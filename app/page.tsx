@@ -30,66 +30,46 @@ const products = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-epic to-cool flex flex-col items-center justify-center p-0">
-      <header className="w-full py-12 flex flex-col items-center animate-fade-in">
-        <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary via-epic to-cool drop-shadow-lg animate-gradient-x">
-          Epic Online Store
-        </h1>
-        <p className="mt-4 text-xl md:text-2xl text-foreground/80 font-medium animate-pulse-fast">
-          Colorful. Animated. Unforgettable.
-        </p>
-      </header>
-      <main className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 py-8">
-        {products.map((product, idx) => (
-          <div
-            key={product.name}
-            className={`group relative rounded-3xl p-6 bg-gradient-to-br ${product.color} shadow-2xl overflow-hidden transform transition duration-500 hover:scale-105 hover:rotate-[-2deg] animate-bounce-slow`}
-          >
-            <div className="absolute -top-8 -right-8 opacity-30 blur-2xl w-32 h-32 rounded-full bg-white pointer-events-none" />
-            <Image
-              src={product.image}
-              alt={product.name}
-              width={120}
-              height={120}
-              className="mx-auto drop-shadow-xl group-hover:scale-110 transition-transform duration-300 animate-spin-slow"
-            />
-            <h2 className="mt-6 text-2xl font-bold text-white drop-shadow-sm animate-fade-in">
-              {product.name}
-            </h2>
-            <p className="mt-2 text-lg text-white/90 animate-fade-in">
-              {product.price}
-            </p>
-            <button className="mt-6 w-full py-2 rounded-xl bg-white/90 text-background font-bold text-lg shadow-lg transition hover:bg-foreground hover:text-epic animate-pulse-fast">
-              Buy Now
-            </button>
-          </div>
-        ))}
-      </main>
-      <footer className="w-full py-8 flex flex-col items-center gap-2 animate-fade-in">
-        <p className="text-foreground/70 text-sm">&copy; {new Date().getFullYear()} Epic Online Store. All rights reserved.</p>
-        <div className="flex gap-4">
-          <a href="#" className="text-primary hover:underline">Instagram</a>
-          <a href="#" className="text-accent hover:underline">Twitter</a>
-          <a href="#" className="text-epic hover:underline">Contact</a>
+    <div className="bg-[#f8f9ff] min-h-screen">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-purple-600 to-blue-500 text-white py-16 px-4 rounded-b-3xl shadow-lg">
+        <div className="max-w-5xl mx-auto flex flex-col gap-4">
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-2">Discover Your Style,<br />Elevate Your Life</h1>
+          <p className="text-lg md:text-xl mb-6 max-w-2xl">Explore our curated collection of premium products designed to enhance your everyday experiences. From fashion to home decor, we’ve got you covered.</p>
+          <button className="bg-pink-400 hover:bg-pink-500 text-white font-semibold px-6 py-3 rounded-full w-fit transition">Shop Now &rarr;</button>
         </div>
-      </footer>
-      <style jsx global>{`
-        @keyframes fade-in {
-          0% { opacity: 0; transform: translateY(40px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-          animation: fade-in 1.2s cubic-bezier(0.4,0,0.2,1) both;
-        }
-        @keyframes gradient-x {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        .animate-gradient-x {
-          background-size: 200% 200%;
-          animation: gradient-x 4s ease-in-out infinite;
-        }
-      `}</style>
+      </section>
+
+      {/* Featured Products */}
+      <section className="max-w-6xl mx-auto py-14 px-4">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">Featured Products</h2>
+        <div className="h-1 w-24 bg-gradient-to-r from-pink-400 to-purple-500 mx-auto mb-8 rounded-full" />
+        {/* TODO: Add featured products grid here */}
+      </section>
+
+      {/* New Arrivals */}
+      <section className="max-w-6xl mx-auto py-10 px-4">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">New Arrivals</h2>
+        <div className="h-1 w-24 bg-gradient-to-r from-pink-400 to-purple-500 mx-auto mb-8 rounded-full" />
+        {/* TODO: Add new arrivals grid here */}
+      </section>
+
+      {/* Special Offers */}
+      <section className="max-w-6xl mx-auto py-10 px-4">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">Special Offers</h2>
+        <div className="h-1 w-24 bg-gradient-to-r from-pink-400 to-purple-500 mx-auto mb-8 rounded-full" />
+        {/* TODO: Add special offers cards here */}
+      </section>
+
+      {/* Newsletter */}
+      <section className="bg-gradient-to-br from-purple-600 to-blue-500 text-white py-12 px-4 rounded-3xl max-w-6xl mx-auto my-12 shadow-lg">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">Subscribe to Our Newsletter</h2>
+        <p className="text-center mb-6">Stay updated with our latest products, offers, and news. Get exclusive deals directly to your inbox!</p>
+        <form className="flex flex-col sm:flex-row gap-4 justify-center max-w-xl mx-auto">
+          <input type="email" placeholder="Enter your email address" className="rounded-full px-4 py-2 text-gray-800 w-full" />
+          <button type="submit" className="bg-pink-400 hover:bg-pink-500 text-white font-semibold px-6 py-2 rounded-full transition">Subscribe</button>
+        </form>
+      </section>
     </div>
   );
 }
