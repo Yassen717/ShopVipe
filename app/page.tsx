@@ -1,103 +1,95 @@
+"use client";
 import Image from "next/image";
+
+const products = [
+  {
+    name: "Epic Sneakers",
+    price: "$120",
+    image: "/sneaker.png",
+    color: "from-primary to-accent",
+  },
+  {
+    name: "Cool Headphones",
+    price: "$80",
+    image: "/headphones.png",
+    color: "from-cool to-secondary",
+  },
+  {
+    name: "Colorful Backpack",
+    price: "$60",
+    image: "/backpack.png",
+    color: "from-epic to-primary",
+  },
+  {
+    name: "Vibrant Watch",
+    price: "$150",
+    image: "/watch.png",
+    color: "from-secondary to-epic",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="min-h-screen bg-gradient-to-br from-background via-epic to-cool flex flex-col items-center justify-center p-0">
+      <header className="w-full py-12 flex flex-col items-center animate-fade-in">
+        <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary via-epic to-cool drop-shadow-lg animate-gradient-x">
+          Epic Online Store
+        </h1>
+        <p className="mt-4 text-xl md:text-2xl text-foreground/80 font-medium animate-pulse-fast">
+          Colorful. Animated. Unforgettable.
+        </p>
+      </header>
+      <main className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 py-8">
+        {products.map((product, idx) => (
+          <div
+            key={product.name}
+            className={`group relative rounded-3xl p-6 bg-gradient-to-br ${product.color} shadow-2xl overflow-hidden transform transition duration-500 hover:scale-105 hover:rotate-[-2deg] animate-bounce-slow`}
           >
+            <div className="absolute -top-8 -right-8 opacity-30 blur-2xl w-32 h-32 rounded-full bg-white pointer-events-none" />
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src={product.image}
+              alt={product.name}
+              width={120}
+              height={120}
+              className="mx-auto drop-shadow-xl group-hover:scale-110 transition-transform duration-300 animate-spin-slow"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+            <h2 className="mt-6 text-2xl font-bold text-white drop-shadow-sm animate-fade-in">
+              {product.name}
+            </h2>
+            <p className="mt-2 text-lg text-white/90 animate-fade-in">
+              {product.price}
+            </p>
+            <button className="mt-6 w-full py-2 rounded-xl bg-white/90 text-background font-bold text-lg shadow-lg transition hover:bg-foreground hover:text-epic animate-pulse-fast">
+              Buy Now
+            </button>
+          </div>
+        ))}
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      <footer className="w-full py-8 flex flex-col items-center gap-2 animate-fade-in">
+        <p className="text-foreground/70 text-sm">&copy; {new Date().getFullYear()} Epic Online Store. All rights reserved.</p>
+        <div className="flex gap-4">
+          <a href="#" className="text-primary hover:underline">Instagram</a>
+          <a href="#" className="text-accent hover:underline">Twitter</a>
+          <a href="#" className="text-epic hover:underline">Contact</a>
+        </div>
       </footer>
+      <style jsx global>{`
+        @keyframes fade-in {
+          0% { opacity: 0; transform: translateY(40px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: fade-in 1.2s cubic-bezier(0.4,0,0.2,1) both;
+        }
+        @keyframes gradient-x {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .animate-gradient-x {
+          background-size: 200% 200%;
+          animation: gradient-x 4s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 }
