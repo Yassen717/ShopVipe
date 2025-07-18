@@ -1,34 +1,11 @@
 "use client";
-import Image from "next/image";
-
-const products = [
-  {
-    name: "Epic Sneakers",
-    price: "$120",
-    image: "/sneaker.png",
-    color: "from-primary to-accent",
-  },
-  {
-    name: "Cool Headphones",
-    price: "$80",
-    image: "/headphones.png",
-    color: "from-cool to-secondary",
-  },
-  {
-    name: "Colorful Backpack",
-    price: "$60",
-    image: "/backpack.png",
-    color: "from-epic to-primary",
-  },
-  {
-    name: "Vibrant Watch",
-    price: "$150",
-    image: "/watch.png",
-    color: "from-secondary to-epic",
-  },
-];
+import { products } from './data/products';
+import Image from 'next/image';
 
 export default function Home() {
+  const featured = products.filter(p => p.featured);
+  const newArrivals = products.filter(p => p.newArrival);
+
   return (
     <div className="bg-[#f8f9ff] min-h-screen">
       {/* Hero Section */}
@@ -44,14 +21,54 @@ export default function Home() {
       <section className="max-w-6xl mx-auto py-14 px-4">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">Featured Products</h2>
         <div className="h-1 w-24 bg-gradient-to-r from-pink-400 to-purple-500 mx-auto mb-8 rounded-full" />
-        {/* TODO: Add featured products grid here */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          {featured.map(product => (
+            <div key={product.id} className="bg-white rounded-2xl shadow p-5 flex flex-col gap-3">
+              <div className="flex items-center justify-center h-28 bg-gray-100 rounded mb-2">
+                {product.image ? (
+                  <Image src={product.image} alt={product.name} width={64} height={64} className="object-contain h-16 w-16" />
+                ) : (
+                  <span className="text-4xl text-gray-300">🛍️</span>
+                )}
+              </div>
+              <div className="font-semibold text-lg">{product.name}</div>
+              <div className="text-pink-500 font-bold text-base">${product.price.toFixed(2)}</div>
+              <div className="flex items-center gap-1 text-yellow-400 text-sm">
+                {Array.from({ length: 5 }).map((_, idx) => (
+                  <span key={idx}>{idx < product.rating ? '★' : '☆'}</span>
+                ))}
+              </div>
+              <button className="mt-2 w-full bg-gradient-to-r from-pink-400 to-blue-500 text-white font-semibold py-2 rounded-lg">Add to Cart</button>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* New Arrivals */}
       <section className="max-w-6xl mx-auto py-10 px-4">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">New Arrivals</h2>
         <div className="h-1 w-24 bg-gradient-to-r from-pink-400 to-purple-500 mx-auto mb-8 rounded-full" />
-        {/* TODO: Add new arrivals grid here */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          {newArrivals.map(product => (
+            <div key={product.id} className="bg-white rounded-2xl shadow p-5 flex flex-col gap-3">
+              <div className="flex items-center justify-center h-28 bg-gray-100 rounded mb-2">
+                {product.image ? (
+                  <Image src={product.image} alt={product.name} width={64} height={64} className="object-contain h-16 w-16" />
+                ) : (
+                  <span className="text-4xl text-gray-300">🛍️</span>
+                )}
+              </div>
+              <div className="font-semibold text-lg">{product.name}</div>
+              <div className="text-pink-500 font-bold text-base">${product.price.toFixed(2)}</div>
+              <div className="flex items-center gap-1 text-yellow-400 text-sm">
+                {Array.from({ length: 5 }).map((_, idx) => (
+                  <span key={idx}>{idx < product.rating ? '★' : '☆'}</span>
+                ))}
+              </div>
+              <button className="mt-2 w-full bg-gradient-to-r from-pink-400 to-blue-500 text-white font-semibold py-2 rounded-lg">Add to Cart</button>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* Special Offers */}
