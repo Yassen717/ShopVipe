@@ -1,3 +1,6 @@
+import { products } from '../data/products';
+import Image from 'next/image';
+
 export default function Shop() {
   return (
     <div className="bg-[#f8f9ff] min-h-screen">
@@ -60,7 +63,7 @@ export default function Shop() {
         {/* Main Content */}
         <main className="flex-1">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
-            <div className="text-gray-700 text-sm">Showing 1-9 of 36 products</div>
+            <div className="text-gray-700 text-sm">Showing 1-{products.length} of {products.length} products</div>
             <select className="rounded border px-3 py-2 text-sm">
               <option>Sort by: Featured</option>
               <option>Sort by: Price (Low to High)</option>
@@ -70,17 +73,21 @@ export default function Shop() {
           </div>
           {/* Product Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* TODO: Map product cards here */}
-            {[...Array(9)].map((_, i) => (
-              <div key={i} className="bg-white rounded-2xl shadow p-5 flex flex-col gap-3">
+            {products.map(product => (
+              <div key={product.id} className="bg-white rounded-2xl shadow p-5 flex flex-col gap-3">
                 <div className="flex items-center justify-center h-28 bg-gray-100 rounded mb-2">
-                  {/* Placeholder for product image/icon */}
-                  <span className="text-4xl text-gray-300">🛍️</span>
+                  {product.image ? (
+                    <Image src={product.image} alt={product.name} width={64} height={64} className="object-contain h-16 w-16" />
+                  ) : (
+                    <span className="text-4xl text-gray-300">🛍️</span>
+                  )}
                 </div>
-                <div className="font-semibold text-lg">Product Name</div>
-                <div className="text-pink-500 font-bold text-base">$00.00</div>
+                <div className="font-semibold text-lg">{product.name}</div>
+                <div className="text-pink-500 font-bold text-base">${product.price.toFixed(2)}</div>
                 <div className="flex items-center gap-1 text-yellow-400 text-sm">
-                  {Array(5).fill(0).map((_, idx) => <span key={idx}>★</span>)}
+                  {Array.from({ length: 5 }).map((_, idx) => (
+                    <span key={idx}>{idx < product.rating ? '★' : '☆'}</span>
+                  ))}
                 </div>
                 <button className="mt-2 w-full bg-gradient-to-r from-pink-400 to-blue-500 text-white font-semibold py-2 rounded-lg">Add to Cart</button>
               </div>
