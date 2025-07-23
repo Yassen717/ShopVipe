@@ -19,7 +19,7 @@ export default function Home() {
 
       {/* Featured Products */}
       <section className="max-w-6xl mx-auto py-14 px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">Featured Products</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 text-black">Featured Products</h2>
         <div className="h-1 w-24 bg-gradient-to-r from-pink-400 to-purple-500 mx-auto mb-8 rounded-full" />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {featured.map(product => (
@@ -46,7 +46,7 @@ export default function Home() {
 
       {/* New Arrivals */}
       <section className="max-w-6xl mx-auto py-10 px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">New Arrivals</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 text-black">New Arrivals</h2>
         <div className="h-1 w-24 bg-gradient-to-r from-pink-400 to-purple-500 mx-auto mb-8 rounded-full" />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {newArrivals.map(product => (
@@ -73,7 +73,7 @@ export default function Home() {
 
       {/* Special Offers */}
       <section className="max-w-6xl mx-auto py-10 px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">Special Offers</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 text-black">Special Offers</h2>
         <div className="h-1 w-24 bg-gradient-to-r from-pink-400 to-purple-500 mx-auto mb-8 rounded-full" />
         {/* TODO: Add special offers cards here */}
       </section>
