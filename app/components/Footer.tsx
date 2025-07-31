@@ -46,7 +46,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="text-center text-xs text-gray-400 mt-8">© 2023 ShopVibe. All Rights Reserved.</div>
+      <div className="text-center text-xs text-gray-400 mt-8">© 2025 ShopVibe. All Rights Reserved.</div>
     </footer>
   );
 } 

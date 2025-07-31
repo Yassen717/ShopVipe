@@ -1,153 +1,250 @@
+"use client";
+
+import { useState } from 'react';
+import SectionHeader from '../components/SectionHeader';
+import Button from '../components/Button';
+
 export default function Account() {
+  const [activeTab, setActiveTab] = useState('profile');
+
+  const tabs = [
+    { id: 'profile', name: 'Profile', icon: '👤' },
+    { id: 'orders', name: 'Orders', icon: '📦' },
+    { id: 'addresses', name: 'Addresses', icon: '📍' },
+    { id: 'settings', name: 'Settings', icon: '⚙️' }
+  ];
+
   return (
     <div className="bg-[#f8f9ff] min-h-screen">
-      {/* Gradient Header */}
-      <section className="bg-gradient-to-r from-purple-600 to-green-400 text-white py-10 px-4 rounded-b-3xl shadow-lg mb-8">
+      {/* Header */}
+      <section className="bg-gradient-to-r from-purple-600 to-blue-500 text-white py-10 px-4 rounded-b-3xl shadow-lg mb-8">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">My Account</h1>
-          <p className="text-lg">Welcome back, <span className="font-semibold">Jessica</span>! Manage your orders and account details here.</p>
+          <div className="text-sm mb-2 opacity-80">
+            <span>Home</span> <span className="mx-2">&gt;</span> <span className="font-semibold">My Account</span>
+          </div>
+          <h1 className="text-3xl md:text-4xl font-bold">My Account</h1>
+          <p className="mt-2 opacity-90">Manage your profile and orders</p>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 px-4 pb-16">
-        {/* Sidebar Navigation */}
-        <aside className="w-full md:w-64 bg-white rounded-2xl shadow p-6 mb-6 md:mb-0 flex flex-col gap-2">
-          {[
-            'Dashboard',
-            'Orders',
-            'Wishlist',
-            'Personal Info',
-            'Addresses',
-            'Payment Methods',
-            'Logout',
-          ].map((item, idx) => (
-            <button
-              key={item}
-              className={`text-left px-4 py-2 rounded-lg font-medium transition mb-1 ${idx === 0 ? 'bg-gradient-to-r from-purple-500 to-blue-400 text-white shadow' : 'hover:bg-gray-100 text-gray-700'}`}
-            >
-              {item}
-            </button>
-          ))}
-        </aside>
-
-        {/* Main Content */}
-        <main className="flex-1 flex flex-col gap-8">
-          {/* Dashboard Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-            <div className="bg-white rounded-2xl shadow p-6 flex flex-col items-center">
-              <span className="text-3xl mb-2">🛒</span>
-              <div className="text-2xl font-bold">12</div>
-              <div className="text-gray-500 text-sm">Total Orders</div>
-            </div>
-            <div className="bg-white rounded-2xl shadow p-6 flex flex-col items-center">
-              <span className="text-3xl mb-2">💜</span>
-              <div className="text-2xl font-bold">8</div>
-              <div className="text-gray-500 text-sm">Wishlist Items</div>
-            </div>
-            <div className="bg-white rounded-2xl shadow p-6 flex flex-col items-center">
-              <span className="text-3xl mb-2">🎟️</span>
-              <div className="text-2xl font-bold">3</div>
-              <div className="text-gray-500 text-sm">Available Coupons</div>
+      <div className="max-w-6xl mx-auto px-4 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Sidebar */}
+          <div className="lg:col-span-1">
+            <div className="bg-white rounded-2xl shadow-md p-6">
+              <div className="text-center mb-6">
+                <div className="w-20 h-20 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold">
+                  JD
+                </div>
+                <h3 className="font-semibold text-lg">John Doe</h3>
+                <p className="text-gray-600 text-sm">john.doe@example.com</p>
+              </div>
+              
+              <nav className="space-y-2">
+                {tabs.map(tab => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${
+                      activeTab === tab.id
+                        ? 'bg-purple-500 text-white'
+                        : 'text-gray-700 hover:bg-purple-50'
+                    }`}
+                  >
+                    <span>{tab.icon}</span>
+                    <span className="font-medium">{tab.name}</span>
+                  </button>
+                ))}
+              </nav>
             </div>
           </div>
 
-          {/* Recent Orders */}
-          <section className="bg-white rounded-2xl shadow p-6">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="font-bold text-lg">Recent Orders</h2>
-              <button className="bg-gradient-to-r from-purple-500 to-blue-400 text-white px-4 py-2 rounded-lg font-semibold text-sm">View All Orders</button>
-            </div>
-            <div className="overflow-x-auto">
-              <table className="min-w-full text-sm">
-                <thead>
-                  <tr className="text-left text-gray-500">
-                    <th className="py-2 pr-4">Order #</th>
-                    <th className="py-2 pr-4">Date</th>
-                    <th className="py-2 pr-4">Status</th>
-                    <th className="py-2 pr-4">Total</th>
-                    <th className="py-2">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { id: '#SV8765', date: 'June 15, 2023', status: 'Delivered', total: '$129.99', action: 'View Details' },
-                    { id: '#SV8742', date: 'June 2, 2023', status: 'Processing', total: '$85.50', action: 'Track Order' },
-                    { id: '#SV8721', date: 'May 28, 2023', status: 'Delivered', total: '$210.75', action: 'View Details' },
-                    { id: '#SV8698', date: 'May 15, 2023', status: 'Cancelled', total: '$45.25', action: 'View Details' },
-                  ].map(order => (
-                    <tr key={order.id} className="border-t">
-                      <td className="py-2 pr-4 font-medium">{order.id}</td>
-                      <td className="py-2 pr-4">{order.date}</td>
-                      <td className="py-2 pr-4">
-                        <span className={`px-2 py-1 rounded text-xs font-semibold ${order.status === 'Delivered' ? 'bg-green-100 text-green-600' : order.status === 'Processing' ? 'bg-yellow-100 text-yellow-600' : 'bg-red-100 text-red-600'}`}>{order.status}</span>
-                      </td>
-                      <td className="py-2 pr-4">{order.total}</td>
-                      <td className="py-2">
-                        <a href="#" className="text-blue-600 hover:underline font-semibold text-xs">{order.action}</a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
+          {/* Main Content */}
+          <div className="lg:col-span-3">
+            {activeTab === 'profile' && (
+              <div className="bg-white rounded-2xl shadow-md p-8">
+                <SectionHeader 
+                  title="Profile Information" 
+                  subtitle="Update your personal details"
+                  centered={false}
+                />
+                
+                <form className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                      <input
+                        type="text"
+                        defaultValue="John"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                      <input
+                        type="text"
+                        defaultValue="Doe"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input
+                      type="email"
+                      defaultValue="john.doe@example.com"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                    <input
+                      type="tel"
+                      defaultValue="+1 (555) 123-4567"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Date of Birth</label>
+                    <input
+                      type="date"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    />
+                  </div>
+                  
+                  <Button size="lg">Save Changes</Button>
+                </form>
+              </div>
+            )}
 
-          {/* Wishlist */}
-          <section className="bg-white rounded-2xl shadow p-6">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="font-bold text-lg">Your Wishlist</h2>
-              <button className="bg-gradient-to-r from-purple-500 to-blue-400 text-white px-4 py-2 rounded-lg font-semibold text-sm">View All Items</button>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {[
-                { name: 'Premium Cotton T-Shirt', price: '$29.99' },
-                { name: 'Wireless Headphones', price: '$89.99' },
-                { name: 'Smart Watch Pro', price: '$149.99' },
-              ].map(item => (
-                <div key={item.name} className="bg-gray-50 rounded-xl p-4 flex flex-col gap-2 items-center">
-                  <div className="w-20 h-20 bg-gray-200 rounded flex items-center justify-center text-3xl text-gray-400 mb-2">🎁</div>
-                  <div className="font-semibold text-center">{item.name}</div>
-                  <div className="text-pink-500 font-bold">{item.price}</div>
-                  <div className="flex gap-2 mt-2">
-                    <button className="bg-gradient-to-r from-purple-500 to-blue-400 text-white px-3 py-1 rounded text-xs font-semibold">Add to Cart</button>
-                    <button className="bg-white border border-gray-300 text-gray-500 px-2 py-1 rounded text-xs">🗑️</button>
+            {activeTab === 'orders' && (
+              <div className="bg-white rounded-2xl shadow-md p-8">
+                <SectionHeader 
+                  title="Order History" 
+                  subtitle="View your past orders and track current ones"
+                  centered={false}
+                />
+                
+                <div className="space-y-4">
+                  {/* Sample orders */}
+                  <div className="border rounded-lg p-4">
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <h4 className="font-semibold">Order #12345</h4>
+                        <p className="text-sm text-gray-600">Placed on January 15, 2024</p>
+                      </div>
+                      <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+                        Delivered
+                      </span>
+                    </div>
+                    <p className="text-gray-700 mb-2">3 items • $127.97</p>
+                    <Button variant="outline" size="sm">View Details</Button>
+                  </div>
+                  
+                  <div className="border rounded-lg p-4">
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <h4 className="font-semibold">Order #12344</h4>
+                        <p className="text-sm text-gray-600">Placed on January 10, 2024</p>
+                      </div>
+                      <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                        Shipped
+                      </span>
+                    </div>
+                    <p className="text-gray-700 mb-2">2 items • $89.98</p>
+                    <Button variant="outline" size="sm">Track Order</Button>
                   </div>
                 </div>
-              ))}
-            </div>
-          </section>
+              </div>
+            )}
 
-          {/* Account Settings */}
-          <section className="bg-white rounded-2xl shadow p-6">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="font-bold text-lg">Account Settings</h2>
-              <button className="bg-gradient-to-r from-purple-500 to-blue-400 text-white px-4 py-2 rounded-lg font-semibold text-sm">Save Changes</button>
-            </div>
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium mb-1">First Name</label>
-                <input type="text" className="w-full rounded border px-3 py-2" defaultValue="Jessica" />
+            {activeTab === 'addresses' && (
+              <div className="bg-white rounded-2xl shadow-md p-8">
+                <SectionHeader 
+                  title="Saved Addresses" 
+                  subtitle="Manage your shipping and billing addresses"
+                  centered={false}
+                />
+                
+                <div className="space-y-4 mb-6">
+                  <div className="border rounded-lg p-4">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h4 className="font-semibold mb-1">Home Address</h4>
+                        <p className="text-gray-600 text-sm">
+                          123 Main Street<br />
+                          Apartment 4B<br />
+                          New York, NY 10001<br />
+                          United States
+                        </p>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button variant="outline" size="sm">Edit</Button>
+                        <Button variant="outline" size="sm" className="text-red-500 border-red-500 hover:bg-red-500 hover:text-white">
+                          Delete
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <Button>Add New Address</Button>
               </div>
-              <div>
-                <label className="block text-sm font-medium mb-1">Last Name</label>
-                <input type="text" className="w-full rounded border px-3 py-2" defaultValue="Smith" />
+            )}
+
+            {activeTab === 'settings' && (
+              <div className="bg-white rounded-2xl shadow-md p-8">
+                <SectionHeader 
+                  title="Account Settings" 
+                  subtitle="Manage your preferences and security"
+                  centered={false}
+                />
+                
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="font-semibold mb-4">Email Preferences</h3>
+                    <div className="space-y-3">
+                      <label className="flex items-center gap-3">
+                        <input type="checkbox" defaultChecked className="accent-purple-600" />
+                        <span>Order updates and shipping notifications</span>
+                      </label>
+                      <label className="flex items-center gap-3">
+                        <input type="checkbox" defaultChecked className="accent-purple-600" />
+                        <span>New product announcements</span>
+                      </label>
+                      <label className="flex items-center gap-3">
+                        <input type="checkbox" className="accent-purple-600" />
+                        <span>Special offers and promotions</span>
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-semibold mb-4">Security</h3>
+                    <div className="space-y-3">
+                      <Button variant="outline">Change Password</Button>
+                      <Button variant="outline">Enable Two-Factor Authentication</Button>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-semibold mb-4">Account Actions</h3>
+                    <div className="space-y-3">
+                      <Button variant="outline">Download My Data</Button>
+                      <Button variant="outline" className="text-red-500 border-red-500 hover:bg-red-500 hover:text-white">
+                        Delete Account
+                      </Button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium mb-1">Email Address</label>
-                <input type="email" className="w-full rounded border px-3 py-2" defaultValue="jessica.smith@example.com" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-1">Phone Number</label>
-                <input type="text" className="w-full rounded border px-3 py-2" defaultValue="(555) 123-4567" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-1">Password</label>
-                <input type="password" className="w-full rounded border px-3 py-2" defaultValue="password" />
-              </div>
-            </form>
-          </section>
-        </main>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
-} 
+}

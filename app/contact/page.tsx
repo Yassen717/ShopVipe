@@ -1,87 +1,212 @@
+"use client";
+
+import { useState } from 'react';
+import SectionHeader from '../components/SectionHeader';
+import Button from '../components/Button';
+
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission here
+    console.log('Form submitted:', formData);
+    alert('Thank you for your message! We\'ll get back to you soon.');
+    setFormData({ name: '', email: '', subject: '', message: '' });
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
   return (
     <div className="bg-[#f8f9ff] min-h-screen">
-      {/* Gradient Header */}
-      <section className="bg-gradient-to-r from-purple-600 to-green-400 text-white py-12 px-4 rounded-b-3xl shadow-lg mb-8">
-        <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-2">Contact Us</h1>
-          <p className="text-lg md:text-xl">We’d love to hear from you! Whether you have a question about our products, need help with an order, or just want to say hello, we’re here for you.</p>
+      {/* Header */}
+      <section className="bg-gradient-to-r from-purple-600 to-blue-500 text-white py-10 px-4 rounded-b-3xl shadow-lg mb-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-sm mb-2 opacity-80">
+            <span>Home</span> <span className="mx-2">&gt;</span> <span className="font-semibold">Contact Us</span>
+          </div>
+          <h1 className="text-3xl md:text-4xl font-bold">Contact Us</h1>
+          <p className="mt-2 opacity-90">We'd love to hear from you</p>
         </div>
       </section>
 
-      {/* Contact Form & Info */}
-      <section className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-4 mb-12">
-        {/* Form */}
-        <div className="bg-white rounded-2xl shadow p-6">
-          <h2 className="text-xl font-bold text-blue-700 mb-4">Send Us a Message</h2>
-          <form className="flex flex-col gap-4">
-            <div>
-              <label className="block text-sm font-semibold mb-1">Your Name</label>
-              <input type="text" className="w-full rounded border px-3 py-2" placeholder="Enter your name" />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold mb-1">Email Address</label>
-              <input type="email" className="w-full rounded border px-3 py-2" placeholder="Enter your email" />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold mb-1">Subject</label>
-              <input type="text" className="w-full rounded border px-3 py-2" placeholder="What is this regarding?" />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold mb-1">Your Message</label>
-              <textarea className="w-full rounded border px-3 py-2" rows={4} placeholder="How can we help you?" />
-            </div>
-            <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded transition">Send Message</button>
-          </form>
-        </div>
-        {/* Info */}
-        <div className="bg-white rounded-2xl shadow p-6">
-          <h2 className="text-xl font-bold text-blue-700 mb-4">Contact Information</h2>
-          <div className="mb-4">
-            <div className="font-semibold text-gray-700 mb-1">Our Location</div>
-            <div className="text-gray-600 text-sm">123 Shopping Avenue, Fashion District<br />New York, NY 10001, USA</div>
-          </div>
-          <div className="mb-4">
-            <div className="font-semibold text-gray-700 mb-1">Phone Number</div>
-            <div className="text-gray-600 text-sm">+1 (800) 123-4567<br />+1 (212) 987-6543</div>
-          </div>
-          <div className="mb-4">
-            <div className="font-semibold text-gray-700 mb-1">Email Address</div>
-            <div className="text-gray-600 text-sm">support@shopvibe.com<br />info@shopvibe.com</div>
-          </div>
-          <div className="mb-4">
-            <div className="font-semibold text-gray-700 mb-1">Business Hours</div>
-            <div className="text-gray-600 text-sm">Monday - Friday: 9:00 AM - 8:00 PM<br />Saturday: 10:00 AM - 6:00 PM<br />Sunday: 11:00 AM - 5:00 PM</div>
-          </div>
-        </div>
-      </section>
+      <div className="max-w-6xl mx-auto px-4 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Contact Form */}
+          <div>
+            <SectionHeader 
+              title="Send us a Message" 
+              subtitle="Fill out the form below and we'll get back to you as soon as possible"
+              centered={false}
+            />
+            
+            <div className="bg-white rounded-2xl shadow-md p-8">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    placeholder="Enter your full name"
+                  />
+                </div>
 
-      {/* Find Us Map Placeholder */}
-      <section className="max-w-5xl mx-auto px-4 mb-12">
-        <h2 className="text-xl font-bold text-center text-blue-700 mb-4">Find Us</h2>
-        <div className="bg-gray-100 rounded-2xl flex flex-col items-center justify-center py-16">
-          <span className="text-4xl text-purple-500 mb-2">🗺️</span>
-          <div className="text-gray-600 text-sm text-center">Interactive map would be displayed here<br />123 Shopping Avenue, Fashion District, New York</div>
-        </div>
-      </section>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    placeholder="Enter your email address"
+                  />
+                </div>
 
-      {/* Connect With Us */}
-      <section className="max-w-5xl mx-auto px-4 mb-12">
-        <div className="bg-gradient-to-r from-pink-400 to-orange-300 rounded-2xl py-8 flex flex-col items-center">
-          <h2 className="text-lg font-bold text-white mb-4">Connect With Us</h2>
-          <div className="flex gap-6">
-            {[
-              { icon: '🌐', label: 'Facebook' },
-              { icon: '📸', label: 'Instagram' },
-              { icon: '✉️', label: 'Email' },
-              { icon: '📌', label: 'Pinterest' },
-              { icon: '🎥', label: 'YouTube' },
-            ].map(social => (
-              <a key={social.label} href="#" className="w-12 h-12 flex items-center justify-center bg-white rounded-full text-2xl shadow hover:scale-110 transition" aria-label={social.label}>{social.icon}</a>
-            ))}
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                    Subject *
+                  </label>
+                  <select
+                    id="subject"
+                    name="subject"
+                    required
+                    value={formData.subject}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  >
+                    <option value="">Select a subject</option>
+                    <option value="general">General Inquiry</option>
+                    <option value="order">Order Support</option>
+                    <option value="product">Product Question</option>
+                    <option value="shipping">Shipping & Returns</option>
+                    <option value="technical">Technical Support</option>
+                    <option value="partnership">Partnership</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                    Message *
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={6}
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-vertical"
+                    placeholder="Tell us how we can help you..."
+                  />
+                </div>
+
+                <Button type="submit" size="lg" className="w-full">
+                  Send Message
+                </Button>
+              </form>
+            </div>
+          </div>
+
+          {/* Contact Information */}
+          <div>
+            <SectionHeader 
+              title="Get in Touch" 
+              subtitle="Here are other ways to reach us"
+              centered={false}
+            />
+
+            <div className="space-y-6">
+              {/* Contact Cards */}
+              <div className="bg-white rounded-2xl shadow-md p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <span className="text-2xl">📍</span>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Visit Our Store</h3>
+                    <p className="text-gray-600">
+                      123 Shopping Street<br />
+                      New York, NY 10001<br />
+                      United States
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl shadow-md p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <span className="text-2xl">📞</span>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Call Us</h3>
+                    <p className="text-gray-600">
+                      Phone: +1 (555) 123-4567<br />
+                      Toll Free: 1-800-SHOPVIBE<br />
+                      Mon-Fri: 9AM-6PM EST
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl shadow-md p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                    <span className="text-2xl">✉️</span>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Email Us</h3>
+                    <p className="text-gray-600">
+                      General: info@shopvibe.com<br />
+                      Support: support@shopvibe.com<br />
+                      Sales: sales@shopvibe.com
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl shadow-md p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center">
+                    <span className="text-2xl">💬</span>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Live Chat</h3>
+                    <p className="text-gray-600 mb-3">
+                      Get instant help from our support team
+                    </p>
+                    <Button size="sm" variant="outline">
+                      Start Chat
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
-} 
+}

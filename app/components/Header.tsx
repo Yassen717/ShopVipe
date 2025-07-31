@@ -1,22 +1,40 @@
 "use client";
 
 import Link from "next/link";
+import { useCart } from "../context/CartContext";
 
 export default function Header() {
+  const { state } = useCart();
+
   return (
-    <header className="w-full bg-white shadow-sm">
+    <header className="w-full bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-6">
         <Link href="/" className="flex items-center text-2xl font-bold">
           <span className="text-purple-600">Shop</span><span className="text-pink-500">Vibe</span>
         </Link>
-        <nav className="space-x-6 text-sm font-medium text-gray-700">
-          <Link href="/">Home</Link>
-          <Link href="/shop">Shop</Link>
-          <Link href="/account">My Account</Link>
-          <Link href="/about">About Us</Link>
-          <Link href="/contact">Contact</Link>
-          <Link href="/faqs">FAQs</Link>
+        
+        <nav className="hidden md:flex space-x-6 text-sm font-medium text-gray-700">
+          <Link href="/" className="hover:text-purple-600 transition-colors">Home</Link>
+          <Link href="/shop" className="hover:text-purple-600 transition-colors">Shop</Link>
+          <Link href="/account" className="hover:text-purple-600 transition-colors">My Account</Link>
+          <Link href="/about" className="hover:text-purple-600 transition-colors">About Us</Link>
+          <Link href="/contact" className="hover:text-purple-600 transition-colors">Contact</Link>
+          <Link href="/faqs" className="hover:text-purple-600 transition-colors">FAQs</Link>
         </nav>
+
+        <div className="flex items-center gap-4">
+          <Link href="/cart" className="relative">
+            <div className="flex items-center gap-2 bg-gradient-to-r from-pink-400 to-blue-500 text-white px-4 py-2 rounded-full hover:from-pink-500 hover:to-blue-600 transition-all">
+              <span className="text-lg">🛒</span>
+              <span className="font-medium">Cart</span>
+              {state.itemCount > 0 && (
+                <span className="bg-white text-pink-500 text-xs font-bold px-2 py-1 rounded-full min-w-[20px] text-center">
+                  {state.itemCount}
+                </span>
+              )}
+            </div>
+          </Link>
+        </div>
       </div>
     </header>
   );
