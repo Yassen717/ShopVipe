@@ -179,9 +179,24 @@ export default function Shop() {
               ))}
             </div>
           </div>
-          <Button onClick={applyFilters} className="w-full">
-            Apply Filters
-          </Button>
+          <div className="space-y-2">
+            <Button onClick={applyFilters} className="w-full">
+              Apply Filters
+            </Button>
+            <Button 
+              variant="outline" 
+              onClick={() => {
+                setFilteredProducts(products);
+                setPriceRange({ min: '', max: '' });
+                setSelectedColors([]);
+                setSelectedSizes([]);
+                setSelectedBrands([]);
+              }} 
+              className="w-full"
+            >
+              Clear All
+            </Button>
+          </div>
         </aside>
 
         {/* Main Content */}
