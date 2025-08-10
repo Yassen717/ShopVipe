@@ -1,6 +1,7 @@
 "use client";
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Product } from '../data/products';
 
 interface ProductCardProps {
@@ -17,22 +18,26 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
 
     return (
         <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 p-5 flex flex-col gap-3">
-            <div className="flex items-center justify-center h-32 bg-gray-50 rounded-lg mb-2 overflow-hidden">
-                {product.image ? (
-                    <Image
-                        src={product.image}
-                        alt={product.name}
-                        width={80}
-                        height={80}
-                        className="object-contain h-20 w-20 hover:scale-105 transition-transform duration-200"
-                    />
-                ) : (
-                    <span className="text-4xl text-gray-300">🛍️</span>
-                )}
-            </div>
+            <Link href={`/product/${product.id}`}>
+                <div className="flex items-center justify-center h-32 bg-gray-50 rounded-lg mb-2 overflow-hidden cursor-pointer">
+                    {product.image ? (
+                        <Image
+                            src={product.image}
+                            alt={product.name}
+                            width={80}
+                            height={80}
+                            className="object-contain h-20 w-20 hover:scale-105 transition-transform duration-200"
+                        />
+                    ) : (
+                        <span className="text-4xl text-gray-300">🛍️</span>
+                    )}
+                </div>
+            </Link>
 
             <div className="flex-1">
-                <h3 className="font-semibold text-lg text-gray-800 mb-1 line-clamp-2">{product.name}</h3>
+                <Link href={`/product/${product.id}`}>
+                    <h3 className="font-semibold text-lg text-gray-800 mb-1 line-clamp-2 hover:text-purple-600 cursor-pointer">{product.name}</h3>
+                </Link>
                 <p className="text-sm text-gray-500 mb-2">{product.brand}</p>
                 <div className="text-pink-500 font-bold text-xl mb-2">${product.price.toFixed(2)}</div>
 
