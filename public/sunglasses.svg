@@ -1,0 +1,9 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#f3f4f6"/>
+  <ellipse cx="70" cy="100" rx="25" ry="20" fill="#1f2937"/>
+  <ellipse cx="130" cy="100" rx="25" ry="20" fill="#1f2937"/>
+  <path d="M95 100h10v3H95v-3z" fill="#374151"/>
+  <path d="M45 95h50M105 95h50" stroke="#374151" stroke-width="3" stroke-linecap="round"/>
+  <path d="M20 100c5-5 15-5 20 0M160 100c5-5 15-5 20 0" stroke="#374151" stroke-width="2" stroke-linecap="round"/>
+  <text x="100" y="160" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">Sunglasses</text>
+</svg>

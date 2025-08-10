@@ -1,0 +1,7 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#f3f4f6"/>
+  <path d="M50 80h100v100H50V80z" fill="#e5e7eb"/>
+  <path d="M40 60h20v40H40V60zM140 60h20v40h-20V60z" fill="#d1d5db"/>
+  <path d="M60 50h80v30H60V50z" fill="#d1d5db"/>
+  <text x="100" y="140" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">T-Shirt</text>
+</svg>

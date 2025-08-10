@@ -1,0 +1,13 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#f3f4f6"/>
+  <ellipse cx="100" cy="150" rx="70" ry="15" fill="#374151"/>
+  <path d="M40 130h120c10 0 18 8 18 18v12H40v-30z" fill="#6b7280"/>
+  <path d="M50 100h100c8 0 15 7 15 15v15H50v-30z" fill="#9ca3af"/>
+  <path d="M60 100v-20c0-8 7-15 15-15h50c8 0 15 7 15 15v20" fill="#d1d5db"/>
+  <circle cx="70" cy="120" r="3" fill="#ffffff"/>
+  <circle cx="85" cy="120" r="3" fill="#ffffff"/>
+  <circle cx="100" cy="120" r="3" fill="#ffffff"/>
+  <circle cx="115" cy="120" r="3" fill="#ffffff"/>
+  <circle cx="130" cy="120" r="3" fill="#ffffff"/>
+  <text x="100" y="190" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">Sneakers</text>
+</svg>
