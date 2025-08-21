@@ -4,10 +4,15 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
+import AuthModal from "./auth/AuthModal";
 
 export default function Header() {
   const { state } = useCart();
+  const { user, logout } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
   const router = useRouter();
 
   const handleSearch = (e: React.FormEvent) => {
@@ -53,6 +58,42 @@ export default function Header() {
               </button>
             </div>
           </form>
+          {/* Authentication */}
+          {user ? (
+            <div className="flex items-center gap-4">
+              <Link href="/account" className="text-gray-700 hover:text-purple-600 transition-colors">
+                👤 {user.name}
+              </Link>
+              <button
+                onClick={logout}
+                className="text-gray-700 hover:text-red-600 transition-colors"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => {
+                  setAuthMode('login');
+                  setAuthModalOpen(true);
+                }}
+                className="text-gray-700 hover:text-purple-600 transition-colors px-4 py-2"
+              >
+                Sign In
+              </button>
+              <button
+                onClick={() => {
+                  setAuthMode('register');
+                  setAuthModalOpen(true);
+                }}
+                className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 py-2 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all"
+              >
+                Sign Up
+              </button>
+            </div>
+          )}
+
           <Link href="/cart" className="relative">
             <div className="flex items-center gap-2 bg-gradient-to-r from-pink-400 to-blue-500 text-white px-4 py-2 rounded-full hover:from-pink-500 hover:to-blue-600 transition-all">
               <span className="text-lg">🛒</span>
@@ -66,6 +107,13 @@ export default function Header() {
           </Link>
         </div>
       </div>
+      
+      {/* Auth Modal */}
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+        initialMode={authMode}
+      />
     </header>
   );
 } 
