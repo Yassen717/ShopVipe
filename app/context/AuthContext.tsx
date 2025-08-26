@@ -74,9 +74,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.log('Creating user with ID:', userId);
       await account.create(userId, email, password, name);
       
-      // Login after successful registration
-      await account.createEmailPasswordSession(email, password);
-      await checkUser();
+      // Don't auto-login after registration - let user login manually
     } catch (error) {
       console.error('Registration error:', error);
       throw error;
