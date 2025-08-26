@@ -6,9 +6,10 @@ import Button from '../Button';
 
 interface RegisterFormProps {
   onSwitchToLogin: () => void;
+  onSuccess?: () => void;
 }
 
-export default function RegisterForm({ onSwitchToLogin }: RegisterFormProps) {
+export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFormProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -37,6 +38,7 @@ export default function RegisterForm({ onSwitchToLogin }: RegisterFormProps) {
 
     try {
       await register(email, password, name);
+      onSuccess?.();
     } catch (err: any) {
       setError(err.message || 'Registration failed. Please try again.');
     } finally {

@@ -7,9 +7,10 @@ import Button from '../Button';
 interface LoginFormProps {
   onSwitchToRegister: () => void;
   onForgotPassword: () => void;
+  onSuccess?: () => void;
 }
 
-export default function LoginForm({ onSwitchToRegister, onForgotPassword }: LoginFormProps) {
+export default function LoginForm({ onSwitchToRegister, onForgotPassword, onSuccess }: LoginFormProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -24,6 +25,7 @@ export default function LoginForm({ onSwitchToRegister, onForgotPassword }: Logi
 
     try {
       await login(email, password);
+      onSuccess?.();
     } catch (err: any) {
       setError(err.message || 'Login failed. Please try again.');
     } finally {
