@@ -16,6 +16,7 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   
   const { register } = useAuth();
 
@@ -23,6 +24,7 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
     e.preventDefault();
     setLoading(true);
     setError('');
+    setSuccess('');
 
     if (password !== confirmPassword) {
       setError('Passwords do not match');
@@ -38,7 +40,11 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
 
     try {
       await register(email, password, name);
-      onSuccess?.();
+      setSuccess('Account created successfully! Please sign in with your credentials.');
+      // Delay the callback to show success message
+      setTimeout(() => {
+        onSuccess?.();
+      }, 2000);
     } catch (err: any) {
       setError(err.message || 'Registration failed. Please try again.');
     } finally {
@@ -53,6 +59,12 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
       {error && (
         <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg mb-4">
           {error}
+        </div>
+      )}
+
+      {success && (
+        <div className="bg-green-50 border border-green-200 text-green-600 px-4 py-3 rounded-lg mb-4">
+          {success}
         </div>
       )}
 
