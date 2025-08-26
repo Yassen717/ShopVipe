@@ -18,6 +18,12 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
 
   if (!isOpen) return null;
 
+  const handleAuthSuccess = () => {
+    onClose();
+    // Redirect to account page after successful auth
+    window.location.href = '/account';
+  };
+
   const renderForm = () => {
     switch (mode) {
       case 'login':
@@ -25,12 +31,14 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
           <LoginForm
             onSwitchToRegister={() => setMode('register')}
             onForgotPassword={() => setMode('forgot-password')}
+            onSuccess={handleAuthSuccess}
           />
         );
       case 'register':
         return (
           <RegisterForm
             onSwitchToLogin={() => setMode('login')}
+            onSuccess={handleAuthSuccess}
           />
         );
       case 'forgot-password':
