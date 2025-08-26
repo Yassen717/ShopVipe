@@ -39,18 +39,46 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = async (email: string, password: string) => {
     try {
-      await account.createSession(email, password);
+      // Clear any existing sessions first
+      try {
+        await account.deleteSession('current');
+      } catch (e) {
+        // Ignore if no session exists
+      }
+      
+      await account.createEmailPasswordSession(email, password);
       await checkUser();
     } catch (error) {
+      console.error('Login error:', error);
       throw error;
     }
   };
 
+  const generateValidUserId = () => {
+    // Generate a valid user ID that meets Appwrite requirements
+    const timestamp = Date.now().toString();
+    const random = Math.random().toString(36).substring(2, 8);
+    return `user_${timestamp}_${random}`.substring(0, 36);
+  };
+
   const register = async (email: string, password: string, name: string) => {
     try {
-      await account.create(ID.unique(), email, password, name);
-      await login(email, password);
+      // Clear any existing sessions first
+      try {
+        await account.deleteSession('current');
+      } catch (e) {
+        // Ignore if no session exists
+      }
+      
+      const userId = generateValidUserId();
+      console.log('Creating user with ID:', userId);
+      await account.create(userId, email, password, name);
+      
+      // Login after successful registration
+      await account.createEmailPasswordSession(email, password);
+      await checkUser();
     } catch (error) {
+      console.error('Registration error:', error);
       throw error;
     }
   };
