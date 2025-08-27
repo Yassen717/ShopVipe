@@ -54,7 +54,7 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <h2 className="text-2xl font-bold text-center mb-6">Create Account</h2>
+      <h2 className="text-2xl font-bold text-black text-center mb-6">Create Account</h2>
       
       {error && (
         <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg mb-4">
@@ -68,7 +68,7 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
             Full Name
@@ -79,7 +79,7 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-700"
             placeholder="Enter your full name"
           />
         </div>
@@ -94,8 +94,8 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-            placeholder="Enter your email"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-700"
+            placeholder="Enter your email address"
           />
         </div>
 
@@ -109,7 +109,7 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-700"
             placeholder="Create a password"
           />
           <p className="text-xs text-gray-500 mt-1">Must be at least 8 characters long</p>
@@ -125,7 +125,7 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-700"
             placeholder="Confirm your password"
           />
         </div>
