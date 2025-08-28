@@ -3,6 +3,7 @@ import { products } from './data/products';
 import ProductCard from './components/ProductCard';
 import SectionHeader from './components/SectionHeader';
 import Button from './components/Button';
+import NewsletterSection from './components/NewsletterSection';
 import { useCart } from './context/CartContext';
 
 export default function Home() {
@@ -82,14 +83,7 @@ export default function Home() {
       </section>
 
       {/* Newsletter */}
-      <section className="bg-gradient-to-br from-purple-600 to-blue-500 text-white py-12 px-4 rounded-3xl max-w-6xl mx-auto my-12 shadow-lg">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">Subscribe to Our Newsletter</h2>
-        <p className="text-center mb-6">Stay updated with our latest products, offers, and news. Get exclusive deals directly to your inbox!</p>
-        <form className="flex flex-col sm:flex-row gap-4 justify-center max-w-xl mx-auto">
-          <input type="email" placeholder="Enter your email address" className="rounded-full px-4 py-2 text-gray-800 w-full" />
-          <Button type="submit" className="rounded-full">Subscribe</Button>
-        </form>
-      </section>
+      <NewsletterSection />
     </div>
   );
 }
