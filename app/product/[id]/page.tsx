@@ -31,13 +31,28 @@ export default function ProductDetail() {
     );
   }
 
+  const [showNotification, setShowNotification] = useState(false);
+
   const handleAddToCart = () => {
-    addItem(product);
-    alert('Product added to cart!');
+    for (let i = 0; i < quantity; i++) {
+      addItem(product);
+    }
+    setShowNotification(true);
+    setTimeout(() => setShowNotification(false), 3000);
   };
 
   return (
     <div className="bg-[#f8f9ff] min-h-screen">
+      {/* Success Notification */}
+      {showNotification && (
+        <div className="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-pulse">
+          <div className="flex items-center gap-2">
+            <span>✓</span>
+            <span>{quantity} item(s) added to cart!</span>
+          </div>
+        </div>
+      )}
+      
       {/* Breadcrumb */}
       <div className="max-w-6xl mx-auto px-4 py-6">
         <div className="text-sm text-gray-600 mb-6">
