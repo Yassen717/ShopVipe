@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Product } from '../data/products';
+import Button from './Button';
+import { useWishlist } from '../context/WishlistContext';
 
 interface ProductCardProps {
     product: Product;
@@ -10,16 +12,39 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, onAddToCart }: ProductCardProps) {
+    const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+    const inWishlist = isInWishlist(product.id);
+
     const handleAddToCart = () => {
         if (onAddToCart) {
             onAddToCart(product);
         }
     };
 
+    const handleWishlistToggle = () => {
+        if (inWishlist) {
+            removeFromWishlist(product.id);
+        } else {
+            addToWishlist(product);
+        }
+    };
+
     return (
         <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 p-5 flex flex-col gap-3">
-            <Link href={`/product/${product.id}`}>
-                <div className="flex items-center justify-center h-32 bg-gray-50 rounded-lg mb-2 overflow-hidden cursor-pointer">
+            <div className="relative">
+                <button
+                    onClick={handleWishlistToggle}
+                    className={`absolute top-2 right-2 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+                        inWishlist 
+                            ? 'bg-red-500 text-white' 
+                            : 'bg-white/80 text-gray-400 hover:text-red-500'
+                    }`}
+                    title={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
+                >
+                    {inWishlist ? '❤️' : '🤍'}
+                </button>
+                <Link href={`/product/${product.id}`}>
+                    <div className="flex items-center justify-center h-32 bg-gray-50 rounded-lg mb-2 overflow-hidden cursor-pointer">
                     {product.image ? (
                         <Image
                             src={product.image}
@@ -31,8 +56,9 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
                     ) : (
                         <span className="text-4xl text-gray-300">🛍️</span>
                     )}
-                </div>
-            </Link>
+                    </div>
+                </Link>
+            </div>
 
             <div className="flex-1">
                 <Link href={`/product/${product.id}`}>
