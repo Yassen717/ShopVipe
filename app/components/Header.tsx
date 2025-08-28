@@ -33,6 +33,7 @@ export default function Header() {
         <nav className="hidden md:flex space-x-6 text-sm font-medium text-gray-700">
           <Link href="/" className="hover:text-purple-600 transition-colors">Home</Link>
           <Link href="/shop" className="hover:text-purple-600 transition-colors">Shop</Link>
+          <Link href="/wishlist" className="hover:text-purple-600 transition-colors">Wishlist</Link>
           <Link href="/account" className="hover:text-purple-600 transition-colors">My Account</Link>
           <Link href="/about" className="hover:text-purple-600 transition-colors">About Us</Link>
           <Link href="/contact" className="hover:text-purple-600 transition-colors">Contact</Link>
