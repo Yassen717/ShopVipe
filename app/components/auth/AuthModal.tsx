@@ -58,7 +58,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-purple-100/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div className="bg-[#f8f9ff] rounded-2xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto border border-gray-200">
         <div className="p-6">
           <div className="flex justify-between items-center mb-6">
