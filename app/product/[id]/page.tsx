@@ -168,13 +168,16 @@ export default function ProductDetail() {
               >
                 Add to Cart - ${(product.price * quantity).toFixed(2)}
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="w-full"
-              >
-                Buy Now
-              </Button>
+              <Link href="/checkout">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="w-full"
+                  onClick={handleAddToCart}
+                >
+                  Buy Now
+                </Button>
+              </Link>
             </div>
 
             {/* Product Description */}
