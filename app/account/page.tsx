@@ -2,10 +2,15 @@
 
 import ProtectedRoute from '../components/auth/ProtectedRoute';
 import { useAuth } from '../context/AuthContext';
+import { useOrders } from '../context/OrderContext';
+import { useWishlist } from '../context/WishlistContext';
 import Button from '../components/Button';
+import Link from 'next/link';
 
 export default function AccountPage() {
   const { user, logout } = useAuth();
+  const { state: orderState } = useOrders();
+  const { wishlist } = useWishlist();
 
   const handleLogout = async () => {
     try {
@@ -54,9 +59,11 @@ export default function AccountPage() {
                   <Button variant="outline" className="w-full">
                     Change Password
                   </Button>
-                  <Button variant="outline" className="w-full">
-                    Order History
-                  </Button>
+                  <Link href="/orders">
+                    <Button variant="outline" className="w-full">
+                      Order History
+                    </Button>
+                  </Link>
                   <Button 
                     variant="outline" 
                     className="w-full text-red-600 border-red-300 hover:bg-red-50"
@@ -73,11 +80,11 @@ export default function AccountPage() {
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Quick Stats</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-purple-50 rounded-lg p-4 text-center">
-                  <div className="text-2xl font-bold text-purple-600">0</div>
+                  <div className="text-2xl font-bold text-purple-600">{orderState.orders.length}</div>
                   <div className="text-sm text-gray-600">Orders</div>
                 </div>
                 <div className="bg-blue-50 rounded-lg p-4 text-center">
-                  <div className="text-2xl font-bold text-blue-600">0</div>
+                  <div className="text-2xl font-bold text-blue-600">{wishlist.length}</div>
                   <div className="text-sm text-gray-600">Wishlist Items</div>
                 </div>
                 <div className="bg-green-50 rounded-lg p-4 text-center">

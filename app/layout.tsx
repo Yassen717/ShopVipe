@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
 import { WishlistProvider } from "./context/WishlistContext";
+import { OrderProvider } from "./context/OrderContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -63,13 +64,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider>
-          <WishlistProvider>
-            <CartProvider>
-              <Header />
-              {children}
-              <Footer />
-            </CartProvider>
-          </WishlistProvider>
+          <OrderProvider>
+            <WishlistProvider>
+              <CartProvider>
+                <Header />
+                {children}
+                <Footer />
+              </CartProvider>
+            </WishlistProvider>
+          </OrderProvider>
         </AuthProvider>
       </body>
     </html>

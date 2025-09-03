@@ -1,14 +1,16 @@
 "use client";
 
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useOrders } from '../../context/OrderContext';
 import Link from 'next/link';
 import Button from '../../components/Button';
 
 export default function CheckoutSuccess() {
-  const [orderNumber] = useState(() => {
-    // Generate a random order number
-    return 'ORD-' + Date.now().toString().slice(-8) + Math.random().toString(36).substr(2, 4).toUpperCase();
-  });
+  const searchParams = useSearchParams();
+  const { getOrderById } = useOrders();
+  const orderId = searchParams.get('orderId');
+  const order = orderId ? getOrderById(orderId) : null;
 
   useEffect(() => {
     // Scroll to top on page load
@@ -38,16 +40,19 @@ export default function CheckoutSuccess() {
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-600">Order Number:</span>
-                <span className="font-semibold">{orderNumber}</span>
+                <span className="font-semibold">{order?.orderNumber || 'N/A'}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">Order Date:</span>
-                <span className="font-semibold">{new Date().toLocaleDateString()}</span>
+                <span className="font-semibold">
+                  {order?.createdAt ? new Date(order.createdAt).toLocaleDateString() : new Date().toLocaleDateString()}
+                </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">Estimated Delivery:</span>
                 <span className="font-semibold">
-                  {new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString()} - {new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString()}
+                  {order?.estimatedDelivery ? new Date(order.estimatedDelivery).toLocaleDateString() : 
+                   `${new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString()} - ${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString()}`}
                 </span>
               </div>
             </div>

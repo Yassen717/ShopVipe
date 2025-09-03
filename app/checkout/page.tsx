@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { useOrders } from '../context/OrderContext';
 import Button from '../components/Button';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -29,6 +30,7 @@ interface PaymentInfo {
 export default function Checkout() {
   const { state, clearCart } = useCart();
   const { user } = useAuth();
+  const { addOrder } = useOrders();
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -88,9 +90,26 @@ export default function Checkout() {
     try {
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      // Clear cart and redirect to success page
+      // Create order
+      const orderNumber = 'ORD-' + Date.now().toString().slice(-8) + Math.random().toString(36).substr(2, 4).toUpperCase();
+      const orderId = addOrder({
+        orderNumber,
+        items: state.items,
+        subtotal,
+        tax,
+        shipping,
+        total,
+        status: 'pending',
+        shippingInfo,
+        paymentInfo: {
+          cardLast4: paymentInfo.cardNumber.replace(/\s/g, '').slice(-4),
+          cardType: 'Credit Card'
+        }
+      });
+      
+      // Clear cart and redirect to success page with order ID
       clearCart();
-      router.push('/checkout/success');
+      router.push(`/checkout/success?orderId=${orderId}`);
     } catch (error) {
       console.error('Payment failed:', error);
       setIsProcessing(false);
