@@ -6,22 +6,14 @@ import { useRouter } from "next/navigation";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import AuthModal from "./auth/AuthModal";
+import SearchAutocomplete from "./SearchAutocomplete";
 
 export default function Header() {
   const { state } = useCart();
   const { user, logout } = useAuth();
-  const [searchQuery, setSearchQuery] = useState('');
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
   const router = useRouter();
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-      setSearchQuery('');
-    }
-  };
 
   return (
     <header className="w-full bg-white shadow-sm sticky top-0 z-50">
@@ -41,24 +33,13 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          {/* Search Form */}
-          <form onSubmit={handleSearch} className="hidden lg:flex">
-            <div className="flex">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search products..."
-                className="px-3 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm w-48"
-              />
-              <button
-                type="submit"
-                className="bg-purple-500 hover:bg-purple-600 text-white px-3 py-2 rounded-r-lg transition-colors"
-              >
-                🔍
-              </button>
-            </div>
-          </form>
+          {/* Search Autocomplete */}
+          <div className="hidden lg:block">
+            <SearchAutocomplete 
+              placeholder="Search products..."
+              className="w-48"
+            />
+          </div>
           {/* Authentication */}
           {user ? (
             <div className="flex items-center gap-4">
