@@ -3,6 +3,7 @@ import { products } from './data/products';
 import ProductCard from './components/ProductCard';
 import SectionHeader from './components/SectionHeader';
 import Button from './components/Button';
+import NewsletterSection from './components/NewsletterSection';
 import { useCart } from './context/CartContext';
 
 export default function Home() {
@@ -11,12 +12,12 @@ export default function Home() {
   const newArrivals = products.filter(p => p.newArrival);
 
   return (
-    <div className="bg-[#f8f9ff] min-h-screen">
+    <>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-purple-600 to-blue-500 text-white py-16 px-4 rounded-b-3xl shadow-lg">
         <div className="max-w-5xl mx-auto flex flex-col gap-4">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-2">Discover Your Style,<br />Elevate Your Life</h1>
-          <p className="text-lg md:text-xl mb-6 max-w-2xl">Explore our curated collection of premium products designed to enhance your everyday experiences. From fashion to home decor, we’ve got you covered.</p>
+          <p className="text-lg md:text-xl mb-6 max-w-2xl">Explore our curated collection of premium products designed to enhance your everyday experiences. From fashion to home decor, we've got you covered.</p>
           <Button size="lg" className="w-fit">
             Shop Now →
           </Button>
@@ -82,14 +83,7 @@ export default function Home() {
       </section>
 
       {/* Newsletter */}
-      <section className="bg-gradient-to-br from-purple-600 to-blue-500 text-white py-12 px-4 rounded-3xl max-w-6xl mx-auto my-12 shadow-lg">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">Subscribe to Our Newsletter</h2>
-        <p className="text-center mb-6">Stay updated with our latest products, offers, and news. Get exclusive deals directly to your inbox!</p>
-        <form className="flex flex-col sm:flex-row gap-4 justify-center max-w-xl mx-auto">
-          <input type="email" placeholder="Enter your email address" className="rounded-full px-4 py-2 text-gray-800 w-full" />
-          <Button type="submit" className="rounded-full">Subscribe</Button>
-        </form>
-      </section>
-    </div>
+      <NewsletterSection />
+    </>
   );
 }

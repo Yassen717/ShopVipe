@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -42,6 +43,21 @@ body {
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  height: 100%;
+}
+
+/* Push footer to bottom even on short pages */
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1; /* takes all available space */
 }
 
 /* Focus styles for better accessibility */

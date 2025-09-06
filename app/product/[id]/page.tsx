@@ -31,13 +31,28 @@ export default function ProductDetail() {
     );
   }
 
+  const [showNotification, setShowNotification] = useState(false);
+
   const handleAddToCart = () => {
-    addItem(product);
-    alert('Product added to cart!');
+    for (let i = 0; i < quantity; i++) {
+      addItem(product);
+    }
+    setShowNotification(true);
+    setTimeout(() => setShowNotification(false), 3000);
   };
 
   return (
     <div className="bg-[#f8f9ff] min-h-screen">
+      {/* Success Notification */}
+      {showNotification && (
+        <div className="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-pulse">
+          <div className="flex items-center gap-2">
+            <span>✓</span>
+            <span>{quantity} item(s) added to cart!</span>
+          </div>
+        </div>
+      )}
+      
       {/* Breadcrumb */}
       <div className="max-w-6xl mx-auto px-4 py-6">
         <div className="text-sm text-gray-600 mb-6">
@@ -153,22 +168,34 @@ export default function ProductDetail() {
               >
                 Add to Cart - ${(product.price * quantity).toFixed(2)}
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="w-full"
-              >
-                Buy Now
-              </Button>
+              <Link href="/checkout">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="w-full"
+                  onClick={handleAddToCart}
+                >
+                  Buy Now
+                </Button>
+              </Link>
             </div>
 
-            {/* Product Features */}
+            {/* Product Description */}
             <div className="mt-8 pt-8 border-t">
-              <h3 className="font-semibold mb-4">Product Features</h3>
+              <h3 className="font-semibold mb-4">Product Description</h3>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                Experience premium quality and style with our {product.name}. Crafted with attention to detail and designed for comfort, this product combines functionality with modern aesthetics. Perfect for everyday wear or special occasions.
+              </p>
+              
+              <h3 className="font-semibold mb-4">Features & Benefits</h3>
               <ul className="space-y-2 text-gray-600">
                 <li className="flex items-center gap-2">
                   <span className="text-green-500">✓</span>
-                  High-quality materials
+                  Premium quality materials and construction
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  Available in multiple colors and sizes
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-green-500">✓</span>
@@ -176,11 +203,15 @@ export default function ProductDetail() {
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-green-500">✓</span>
-                  30-day return policy
+                  30-day hassle-free return policy
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-green-500">✓</span>
                   Secure payment processing
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  Customer satisfaction guarantee
                 </li>
               </ul>
             </div>

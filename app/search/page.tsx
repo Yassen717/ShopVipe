@@ -5,32 +5,35 @@ import { useSearchParams } from 'next/navigation';
 import { products } from '../data/products';
 import ProductCard from '../components/ProductCard';
 import { useCart } from '../context/CartContext';
+import { useSearch } from '../context/SearchContext';
+import SearchAutocomplete from '../components/SearchAutocomplete';
 
 export default function Search() {
   const searchParams = useSearchParams();
   const { addItem } = useCart();
+  const { searchProducts, addToRecentSearches, popularSearches } = useSearch();
   const [searchQuery, setSearchQuery] = useState(searchParams.get('q') || '');
   const [filteredProducts, setFilteredProducts] = useState(products);
 
   useEffect(() => {
-    const query = searchQuery.toLowerCase().trim();
+    const query = searchParams.get('q') || '';
+    setSearchQuery(query);
     if (query) {
-      const filtered = products.filter(product =>
-        product.name.toLowerCase().includes(query) ||
-        product.brand.toLowerCase().includes(query)
-      );
+      addToRecentSearches(query);
+      const filtered = searchProducts(query);
       setFilteredProducts(filtered);
     } else {
       setFilteredProducts(products);
     }
-  }, [searchQuery]);
+  }, [searchParams, searchProducts, addToRecentSearches]);
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Update URL with search query
+  const handleSearch = (query: string) => {
     const url = new URL(window.location.href);
-    url.searchParams.set('q', searchQuery);
+    url.searchParams.set('q', query);
     window.history.pushState({}, '', url);
+    setSearchQuery(query);
+    const filtered = searchProducts(query);
+    setFilteredProducts(filtered);
   };
 
   return (
@@ -44,23 +47,13 @@ export default function Search() {
           <h1 className="text-3xl md:text-4xl font-bold mb-4">Search Products</h1>
           
           {/* Search Form */}
-          <form onSubmit={handleSearch} className="max-w-2xl">
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search for products, brands..."
-                className="flex-1 px-4 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-white"
-              />
-              <button
-                type="submit"
-                className="bg-white text-purple-600 hover:bg-gray-100 font-semibold px-6 py-3 rounded-lg transition-colors"
-              >
-                Search
-              </button>
-            </div>
-          </form>
+          <div className="max-w-2xl">
+            <SearchAutocomplete 
+              placeholder="Search for products, brands..."
+              onSearch={handleSearch}
+              className="w-full"
+            />
+          </div>
         </div>
       </section>
 
@@ -118,10 +111,10 @@ export default function Search() {
           <div className="mt-16">
             <h3 className="text-xl font-bold text-gray-800 mb-4">Popular Searches</h3>
             <div className="flex flex-wrap gap-2">
-              {['T-Shirt', 'Jeans', 'Sneakers', 'Hoodie', 'Watch', 'Sunglasses'].map(term => (
+              {popularSearches.map(term => (
                 <button
                   key={term}
-                  onClick={() => setSearchQuery(term)}
+                  onClick={() => handleSearch(term)}
                   className="bg-white hover:bg-purple-50 text-purple-600 border border-purple-200 px-4 py-2 rounded-full text-sm font-medium transition-colors"
                 >
                   {term}

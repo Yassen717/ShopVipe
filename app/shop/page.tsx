@@ -96,7 +96,7 @@ export default function Shop() {
                 placeholder="Min" 
                 value={priceRange.min}
                 onChange={(e) => setPriceRange({...priceRange, min: e.target.value})}
-                className="w-16 px-2 py-1 rounded border focus:outline-none focus:ring-2 focus:ring-purple-500" 
+                className="w-16 px-2 py-1 rounded border focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-900" 
               />
               <span>-</span>
               <input 
@@ -104,7 +104,7 @@ export default function Shop() {
                 placeholder="Max" 
                 value={priceRange.max}
                 onChange={(e) => setPriceRange({...priceRange, max: e.target.value})}
-                className="w-16 px-2 py-1 rounded border focus:outline-none focus:ring-2 focus:ring-purple-500" 
+                className="w-16 px-2 py-1 rounded border focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-900" 
               />
             </div>
           </div>
