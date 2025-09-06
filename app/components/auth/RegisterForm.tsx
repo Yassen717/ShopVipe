@@ -79,7 +79,7 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-700"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900"
             placeholder="Enter your full name"
           />
         </div>
@@ -94,7 +94,7 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-700"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900"
             placeholder="Enter your email address"
           />
         </div>
@@ -109,7 +109,7 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-700"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900"
             placeholder="Create a password"
           />
           <p className="text-xs text-gray-500 mt-1">Must be at least 8 characters long</p>
@@ -125,7 +125,7 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-700"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900"
             placeholder="Confirm your password"
           />
         </div>
@@ -144,7 +144,7 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
           Already have an account?{' '}
           <button
             onClick={onSwitchToLogin}
-            className="text-purple-600 hover:text-purple-500 font-medium"
+            className="text-purple-600  hover:text-purple-500 font-medium"
           >
             Sign in
           </button>

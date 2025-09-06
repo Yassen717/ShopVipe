@@ -70,7 +70,9 @@ export default function RootLayout({
               <CartProvider>
                 <SearchProvider>
                   <Header />
-                  {children}
+                  <main className="bg-[#f8f9ff]">
+                    {children}
+                  </main>
                   <Footer />
                 </SearchProvider>
               </CartProvider>

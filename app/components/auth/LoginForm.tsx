@@ -45,7 +45,7 @@ export default function LoginForm({ onSwitchToRegister, onForgotPassword, onSucc
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="email" className="block text-sm font-medium text-white mb-1">
             Email Address
           </label>
           <input
@@ -54,7 +54,7 @@ export default function LoginForm({ onSwitchToRegister, onForgotPassword, onSucc
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-700"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900"
             placeholder="Enter your email address"
           />
         </div>
@@ -69,7 +69,7 @@ export default function LoginForm({ onSwitchToRegister, onForgotPassword, onSucc
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-700"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900"
             placeholder="Enter your password"
           />
         </div>

@@ -32,12 +32,12 @@ export default function Header() {
           <Link href="/faqs" className="hover:text-purple-600 transition-colors">FAQs</Link>
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-6">
           {/* Search Autocomplete */}
           <div className="hidden lg:block">
             <SearchAutocomplete 
               placeholder="Search products..."
-              className="w-48"
+              className="w-52"
             />
           </div>
           {/* Authentication */}
@@ -54,13 +54,13 @@ export default function Header() {
               </button>
             </div>
           ) : (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <button
                 onClick={() => {
                   setAuthMode('login');
                   setAuthModalOpen(true);
                 }}
-                className="text-gray-700 hover:text-purple-600 transition-colors px-4 py-2"
+                className="text-gray-700 hover:text-purple-600 transition-colors px-6 py-2"
               >
                 Sign In
               </button>
@@ -69,7 +69,7 @@ export default function Header() {
                   setAuthMode('register');
                   setAuthModalOpen(true);
                 }}
-                className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 py-2 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all"
+                className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all"
               >
                 Sign Up
               </button>

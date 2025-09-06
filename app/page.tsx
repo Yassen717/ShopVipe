@@ -12,12 +12,12 @@ export default function Home() {
   const newArrivals = products.filter(p => p.newArrival);
 
   return (
-    <div className="bg-[#f8f9ff] min-h-screen">
+    <>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-purple-600 to-blue-500 text-white py-16 px-4 rounded-b-3xl shadow-lg">
         <div className="max-w-5xl mx-auto flex flex-col gap-4">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-2">Discover Your Style,<br />Elevate Your Life</h1>
-          <p className="text-lg md:text-xl mb-6 max-w-2xl">Explore our curated collection of premium products designed to enhance your everyday experiences. From fashion to home decor, we’ve got you covered.</p>
+          <p className="text-lg md:text-xl mb-6 max-w-2xl">Explore our curated collection of premium products designed to enhance your everyday experiences. From fashion to home decor, we've got you covered.</p>
           <Button size="lg" className="w-fit">
             Shop Now →
           </Button>
@@ -84,6 +84,6 @@ export default function Home() {
 
       {/* Newsletter */}
       <NewsletterSection />
-    </div>
+    </>
   );
 }

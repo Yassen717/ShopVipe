@@ -52,7 +52,7 @@ export default function NewsletterSection() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email address" 
-          className="rounded-full px-4 py-2 text-gray-800 w-full focus:outline-none focus:ring-2 focus:ring-white"
+          className="rounded-full px-4 py-2 text-gray-800 w-full focus:outline-none focus:ring-2 focus:ring-white placeholder-gray-900"
           disabled={status === 'loading'}
           required
         />
