@@ -9,6 +9,7 @@ A modern, responsive e-commerce platform built with Next.js 15, featuring a beau
 - **Shop** - Complete product catalog with advanced filtering
 - **Product Details** - Individual product pages with full specifications
 - **Shopping Cart** - Dynamic cart with quantity management
+- **Wishlist** - Save favorite items for later
 - **User Account** - Profile management and order history
 - **Search** - Powerful product search functionality
 
@@ -22,6 +23,7 @@ A modern, responsive e-commerce platform built with Next.js 15, featuring a beau
 ### 🛒 **Shopping Features**
 - **Product Filtering** - Filter by price, color, size, and brand
 - **Search Functionality** - Real-time product search
+- **Wishlist** - Save items for later purchase
 - **Cart Management** - Add, remove, and update quantities
 - **Product Variants** - Color and size selection
 - **Related Products** - Smart product recommendations
@@ -95,9 +97,11 @@ app/
 ├── about/             # About page
 ├── account/           # User account pages
 ├── cart/              # Shopping cart
+├── checkout/          # Checkout process
 ├── contact/           # Contact page
 ├── faqs/              # FAQ page
 ├── product/[id]/      # Dynamic product pages
+├── wishlist/          # User's saved items
 ├── search/            # Search functionality
 ├── shop/              # Product catalog
 ├── globals.css        # Global styles
