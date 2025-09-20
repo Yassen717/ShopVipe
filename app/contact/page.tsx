@@ -145,7 +145,7 @@ export default function Contact() {
                     <span className="text-2xl">📍</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-2">Visit Our Store</h3>
+                    <h3 className="font-semibold text-lg mb-2 text-black">Visit Our Store</h3>
                     <p className="text-gray-600">
                       123 Shopping Street<br />
                       New York, NY 10001<br />
@@ -161,9 +161,9 @@ export default function Contact() {
                     <span className="text-2xl">📞</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-2">Call Us</h3>
+                    <h3 className="font-semibold text-lg mb-2 text-black">Call Us</h3>
                     <p className="text-gray-600">
-                      Phone: +1 (555) 123-4567<br />
+                      Phone: +218 0929209456<br />
                       Toll Free: 1-800-SHOPVIBE<br />
                       Mon-Fri: 9AM-6PM EST
                     </p>
@@ -177,7 +177,7 @@ export default function Contact() {
                     <span className="text-2xl">✉️</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-2">Email Us</h3>
+                    <h3 className="font-semibold text-lg mb-2 text-black">Email Us</h3>
                     <p className="text-gray-600">
                       General: info@shopvibe.com<br />
                       Support: support@shopvibe.com<br />
@@ -193,7 +193,7 @@ export default function Contact() {
                     <span className="text-2xl">💬</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-2">Live Chat</h3>
+                    <h3 className="font-semibold text-lg mb-2 text-black">Live Chat</h3>
                     <p className="text-gray-600 mb-3">
                       Get instant help from our support team
                     </p>

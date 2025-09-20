@@ -40,17 +40,17 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white rounded-2xl shadow-md p-6 text-center">
               <div className="text-4xl mb-4">🎯</div>
-              <h3 className="text-xl font-semibold mb-3">Quality First</h3>
+              <h3 className="text-xl font-semibold mb-3 text-black">Quality First</h3>
               <p className="text-gray-600">We source only the highest quality products from trusted suppliers and brands.</p>
             </div>
             <div className="bg-white rounded-2xl shadow-md p-6 text-center">
               <div className="text-4xl mb-4">💝</div>
-              <h3 className="text-xl font-semibold mb-3">Customer Focused</h3>
+              <h3 className="text-xl font-semibold mb-3 text-black">Customer Focused</h3>
               <p className="text-gray-600">Your satisfaction is our priority. We're here to help every step of the way.</p>
             </div>
             <div className="bg-white rounded-2xl shadow-md p-6 text-center">
               <div className="text-4xl mb-4">🌱</div>
-              <h3 className="text-xl font-semibold mb-3">Sustainable</h3>
+              <h3 className="text-xl font-semibold mb-3 text-black">Sustainable</h3>
               <p className="text-gray-600">We're committed to sustainable practices and eco-friendly packaging.</p>
             </div>
           </div>
@@ -67,7 +67,7 @@ export default function About() {
               <div className="w-24 h-24 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold">
                 JS
               </div>
-              <h3 className="text-xl font-semibold mb-2">Jane Smith</h3>
+              <h3 className="text-xl font-semibold mb-2 text-black">Jane Smith</h3>
               <p className="text-purple-600 font-medium mb-2">CEO & Founder</p>
               <p className="text-gray-600 text-sm">Passionate about creating amazing shopping experiences and building lasting customer relationships.</p>
             </div>
@@ -75,7 +75,7 @@ export default function About() {
               <div className="w-24 h-24 bg-gradient-to-r from-blue-400 to-green-400 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold">
                 MD
               </div>
-              <h3 className="text-xl font-semibold mb-2">Mike Davis</h3>
+              <h3 className="text-xl font-semibold mb-2 text-black">Mike Davis</h3>
               <p className="text-purple-600 font-medium mb-2">Head of Operations</p>
               <p className="text-gray-600 text-sm">Ensures smooth operations and timely delivery of products to our valued customers.</p>
             </div>
@@ -83,7 +83,7 @@ export default function About() {
               <div className="w-24 h-24 bg-gradient-to-r from-pink-400 to-orange-400 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold">
                 SJ
               </div>
-              <h3 className="text-xl font-semibold mb-2">Sarah Johnson</h3>
+              <h3 className="text-xl font-semibold mb-2 text-black">Sarah Johnson</h3>
               <p className="text-purple-600 font-medium mb-2">Customer Success</p>
               <p className="text-gray-600 text-sm">Dedicated to providing exceptional customer support and ensuring your satisfaction.</p>
             </div>
