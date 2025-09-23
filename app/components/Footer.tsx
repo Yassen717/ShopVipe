@@ -16,8 +16,9 @@ export default function Footer() {
           <ul className="space-y-1 text-sm">
             <li><Link href="/">Home</Link></li>
             <li><Link href="/shop">Shop</Link></li>
-            <li><Link href="/new-arrivals">New Arrivals</Link></li>
-            <li><Link href="/special-offers">Special Offers</Link></li>
+            <li><Link href="/about">About Us</Link></li>
+            <li><Link href="/search">Search</Link></li>
+            <li><Link href="/wishlist">Wishlist</Link></li>
             <li><Link href="/account">My Account</Link></li>
           </ul>
         </div>
@@ -26,9 +27,9 @@ export default function Footer() {
           <ul className="space-y-1 text-sm">
             <li><Link href="/contact">Contact Us</Link></li>
             <li><Link href="/faqs">FAQs</Link></li>
-            <li><Link href="/shipping-policy">Shipping Policy</Link></li>
-            <li><Link href="/returns">Returns & Exchanges</Link></li>
-            <li><Link href="/privacy-policy">Privacy Policy</Link></li>
+            <li><Link href="/orders">Orders</Link></li>
+            <li><Link href="/cart">Cart</Link></li>
+            <li><Link href="/checkout">Checkout</Link></li>
           </ul>
         </div>
         <div>
@@ -38,10 +39,10 @@ export default function Footer() {
             <li>+1 (555) 123-4567</li>
             <li>info@shopvibe.com</li>
             <li className="flex space-x-3 mt-2">
-              <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
-              <a href="#" aria-label="Twitter"><i className="fab fa-twitter"></i></a>
-              <a href="#" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-              <a href="#" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i className="fab fa-twitter"></i></a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a>
             </li>
           </ul>
         </div>
@@ -49,4 +50,5 @@ export default function Footer() {
       <div className="text-center text-xs text-gray-400 mt-8">© 2025 ShopVibe. All Rights Reserved.</div>
     </footer>
   );
-} 
+}
+ 
