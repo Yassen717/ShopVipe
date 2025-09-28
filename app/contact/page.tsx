@@ -36,7 +36,7 @@ export default function Contact() {
             <span>Home</span> <span className="mx-2">&gt;</span> <span className="font-semibold">Contact Us</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold">Contact Us</h1>
-          <p className="mt-2 opacity-90">We'd love to hear from you</p>
+          <p className="mt-2 opacity-90">We&apos;d love to hear from you</p>
         </div>
       </section>
 

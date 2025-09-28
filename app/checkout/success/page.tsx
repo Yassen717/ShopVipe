@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useOrders } from '../../context/OrderContext';
 import Link from 'next/link';
@@ -68,7 +68,7 @@ export default function CheckoutSuccess() {
                 </div>
                 <div>
                   <p className="font-medium text-gray-800">Order Confirmation</p>
-                  <p className="text-sm text-gray-600">You'll receive an email confirmation with your order details.</p>
+                  <p className="text-sm text-gray-600">You&apos;ll receive an email confirmation with your order details.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -77,7 +77,7 @@ export default function CheckoutSuccess() {
                 </div>
                 <div>
                   <p className="font-medium text-gray-800">Processing</p>
-                  <p className="text-sm text-gray-600">We'll prepare your order for shipment within 1-2 business days.</p>
+                  <p className="text-sm text-gray-600">We&apos;ll prepare your order for shipment within 1-2 business days.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -86,7 +86,7 @@ export default function CheckoutSuccess() {
                 </div>
                 <div>
                   <p className="font-medium text-gray-800">Shipping</p>
-                  <p className="text-sm text-gray-600">You'll receive tracking information once your order ships.</p>
+                  <p className="text-sm text-gray-600">You&apos;ll receive tracking information once your order ships.</p>
                 </div>
               </div>
             </div>

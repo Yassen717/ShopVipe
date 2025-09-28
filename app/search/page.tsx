@@ -63,7 +63,7 @@ export default function Search() {
           {searchQuery ? (
             <div>
               <h2 className="text-2xl font-bold text-gray-800 mb-2">
-                Search Results for "{searchQuery}"
+                Search Results for &quot;{searchQuery}&quot;
               </h2>
               <p className="text-gray-600">
                 {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'} found
@@ -93,7 +93,7 @@ export default function Search() {
             <div className="text-8xl mb-6">🔍</div>
             <h3 className="text-2xl font-bold text-gray-800 mb-4">No products found</h3>
             <p className="text-gray-600 mb-8">
-              We couldn't find any products matching "{searchQuery}". Try different keywords or browse our categories.
+              We couldn&apos;t find any products matching &quot;{searchQuery}&quot;. Try different keywords or browse our categories.
             </p>
             <div className="space-y-4">
               <button

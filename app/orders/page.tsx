@@ -1,7 +1,6 @@
 "use client";
 
 import { useOrders } from '../context/OrderContext';
-import { useAuth } from '../context/AuthContext';
 import ProtectedRoute from '../components/auth/ProtectedRoute';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -24,7 +23,7 @@ const statusLabels = {
 
 export default function OrdersPage() {
   const { state } = useOrders();
-  const { user } = useAuth();
+  // const { user } = useAuth(); // Not used
 
   return (
     <ProtectedRoute>
@@ -50,7 +49,7 @@ export default function OrdersPage() {
               <div className="text-8xl mb-6">📦</div>
               <h2 className="text-2xl font-bold text-gray-800 mb-4">No orders yet</h2>
               <p className="text-gray-600 mb-8">
-                You haven't placed any orders yet. Start shopping to see your order history here.
+                You haven&apos;t placed any orders yet. Start shopping to see your order history here.
               </p>
               <Link href="/shop">
                 <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold px-6 py-3 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all">
@@ -168,7 +167,7 @@ export default function OrdersPage() {
                             Estimated Delivery: {new Date(order.estimatedDelivery).toLocaleDateString()}
                           </p>
                           <p className="text-sm text-blue-600">
-                            We'll send you tracking information once your order ships.
+                            We&apos;ll send you tracking information once your order ships.
                           </p>
                         </div>
                       </div>

@@ -26,7 +26,7 @@ export default function About() {
               Founded in 2020, ShopVibe began as a small startup with a big dream: to create an online shopping experience that combines quality products with exceptional customer service. What started as a passion project has grown into a trusted platform serving thousands of customers worldwide.
             </p>
             <p className="text-gray-700 text-lg leading-relaxed">
-              We believe that shopping should be more than just a transaction—it should be an experience that brings joy, discovery, and satisfaction. That's why we carefully curate every product in our collection, ensuring that each item meets our high standards for quality, style, and value.
+              We believe that shopping should be more than just a transaction—it should be an experience that brings joy, discovery, and satisfaction. That&apos;s why we carefully curate every product in our collection, ensuring that each item meets our high standards for quality, style, and value.
             </p>
           </div>
         </section>
@@ -46,12 +46,12 @@ export default function About() {
             <div className="bg-white rounded-2xl shadow-md p-6 text-center">
               <div className="text-4xl mb-4">💝</div>
               <h3 className="text-xl font-semibold mb-3 text-black">Customer Focused</h3>
-              <p className="text-gray-600">Your satisfaction is our priority. We're here to help every step of the way.</p>
+              <p className="text-gray-600">Your satisfaction is our priority. We&apos;re here to help every step of the way.</p>
             </div>
             <div className="bg-white rounded-2xl shadow-md p-6 text-center">
               <div className="text-4xl mb-4">🌱</div>
               <h3 className="text-xl font-semibold mb-3 text-black">Sustainable</h3>
-              <p className="text-gray-600">We're committed to sustainable practices and eco-friendly packaging.</p>
+              <p className="text-gray-600">We&apos;re committed to sustainable practices and eco-friendly packaging.</p>
             </div>
           </div>
         </section>
