@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
@@ -27,6 +27,7 @@ export const metadata: Metadata = {
   creator: "ShopVibe",
   publisher: "ShopVibe",
   robots: "index, follow",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -50,7 +51,11 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
     creator: "@shopvibe",
   },
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
   themeColor: "#8B5CF6",
 };
 

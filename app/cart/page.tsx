@@ -15,7 +15,7 @@ export default function Cart() {
           <div className="text-center">
             <div className="text-8xl mb-6">🛒</div>
             <h1 className="text-3xl font-bold text-gray-800 mb-4">Your cart is empty</h1>
-            <p className="text-gray-600 mb-8">Looks like you haven't added anything to your cart yet.</p>
+            <p className="text-gray-600 mb-8">Looks like you haven&apos;t added anything to your cart yet.</p>
             <Link href="/shop">
               <Button size="lg">Continue Shopping</Button>
             </Link>
@@ -43,10 +43,10 @@ export default function Cart() {
       <div className="max-w-6xl mx-auto px-4 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 text-black">
             <div className="bg-white rounded-2xl shadow-md p-6">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-semibold">Cart Items</h2>
+                <h2 className="text-xl font-semibold text-black">Cart Items</h2>
                 <Button 
                   variant="outline" 
                   size="sm" 
@@ -114,23 +114,22 @@ export default function Cart() {
           {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-2xl shadow-md p-6 sticky top-24">
-              <h2 className="text-xl font-semibold mb-6">Order Summary</h2>
+              <h2 className="text-xl font-semibold mb-6 text-black">Order Summary</h2>
               
               <div className="space-y-3 mb-6">
-                <div className="flex justify-between">
+                <div className="flex justify-between text-black">
                   <span>Subtotal ({state.itemCount} items)</span>
                   <span>${state.total.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span>Shipping</span>
+                <div className="flex justify-between text-black">
                   <span className="text-green-600">Free</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between text-black">
                   <span>Tax</span>
                   <span>${(state.total * 0.08).toFixed(2)}</span>
                 </div>
                 <hr />
-                <div className="flex justify-between text-lg font-bold">
+                <div className="flex justify-between text-lg font-bold text-black">
                   <span>Total</span>
                   <span>${(state.total * 1.08).toFixed(2)}</span>
                 </div>

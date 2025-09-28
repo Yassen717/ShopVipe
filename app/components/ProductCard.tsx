@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Product } from '../data/products';
-import Button from './Button';
 import { useWishlist } from '../context/WishlistContext';
 
 interface ProductCardProps {

@@ -1,0 +1,13 @@
+# Netlify configuration for Next.js App Router (Next 15)
+# Uses the official Netlify Next.js Runtime to support SSR/ISR, image optimization, and edge.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+  environment = { NEXT_TELEMETRY_DISABLED = "1" }
+
+[functions]
+  node_bundler = "esbuild"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

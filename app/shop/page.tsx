@@ -16,7 +16,7 @@ export default function Shop() {
 
   const handleSort = (value: string) => {
     setSortBy(value);
-    let sorted = [...filteredProducts];
+    const sorted = [...filteredProducts];
     
     switch (value) {
       case 'price-low':
@@ -86,17 +86,17 @@ export default function Shop() {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 px-4 pb-16">
         {/* Sidebar Filters */}
         <aside className="w-full md:w-64 bg-white rounded-2xl shadow p-6 mb-6 md:mb-0">
-          <h2 className="font-bold text-lg mb-4">Filter Products</h2>
+          <h2 className="font-bold text-black text-lg mb-4">Filter Products</h2>
           {/* Price Range */}
           <div className="mb-6">
-            <label className="block font-semibold mb-2">Price Range</label>
+            <label className="block font-semibold text-black mb-2">Price Range</label>
             <div className="flex gap-2 items-center">
               <input 
                 type="number" 
                 placeholder="Min" 
                 value={priceRange.min}
                 onChange={(e) => setPriceRange({...priceRange, min: e.target.value})}
-                className="w-16 px-2 py-1 rounded border focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-900" 
+                className="w-16 px-2 py-1 rounded border focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-900 text-black" 
               />
               <span>-</span>
               <input 
@@ -110,7 +110,7 @@ export default function Shop() {
           </div>
           {/* Color */}
           <div className="mb-6">
-            <label className="block font-semibold mb-2">Color</label>
+            <label className="block font-semibold mb-2 text-black">Color</label>
             <div className="flex gap-3 flex-wrap">
               {['red', 'blue', 'green', 'gray', 'black', 'white', 'pink'].map(color => (
                 <button
@@ -133,8 +133,8 @@ export default function Shop() {
           </div>
           {/* Size */}
           <div className="mb-6">
-            <label className="block font-semibold mb-2">Size</label>
-            <div className="flex flex-wrap gap-2">
+            <label className="block font-semibold mb-2 text-black">Size</label>
+            <div className="flex flex-wrap gap-2 text-black">
               {['XS','S','M','L','XL','XXL'].map(size => (
                 <button
                   key={size}
@@ -158,8 +158,8 @@ export default function Shop() {
           </div>
           {/* Brand */}
           <div className="mb-6">
-            <label className="block font-semibold mb-2">Brand</label>
-            <div className="flex flex-col gap-1">
+            <label className="block font-semibold mb-2 text-black">Brand</label>
+            <div className="flex flex-col gap-1 text-black">
               {['Brand One','Brand Two','Brand Three','Brand Four','Brand Five'].map(brand => (
                 <label key={brand} className="flex items-center gap-2 text-sm cursor-pointer">
                   <input 

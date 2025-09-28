@@ -16,7 +16,6 @@ export default function SearchAutocomplete({
   onSearch 
 }: SearchAutocompleteProps) {
   const { 
-    searchQuery, 
     setSearchQuery, 
     recentSearches, 
     popularSearches, 

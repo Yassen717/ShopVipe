@@ -24,8 +24,9 @@ export default function ForgotPasswordForm({ onBackToLogin }: ForgotPasswordForm
     try {
       await forgotPassword(email);
       setSuccess(true);
-    } catch (err: any) {
-      setError(err.message || 'Failed to send reset email. Please try again.');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Failed to send reset email. Please try again.';
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -48,7 +49,7 @@ export default function ForgotPasswordForm({ onBackToLogin }: ForgotPasswordForm
     <div className="w-full max-w-md mx-auto">
       <h2 className="text-2xl font-bold text-center mb-6">Reset Password</h2>
       <p className="text-gray-600 text-center mb-6">
-        Enter your email address and we'll send you a link to reset your password.
+        Enter your email address and we&apos;ll send you a link to reset your password.
       </p>
       
       {error && (

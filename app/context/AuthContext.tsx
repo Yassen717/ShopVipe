@@ -1,15 +1,15 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { account } from '../lib/appwrite';
-import { ID } from 'appwrite';
+import { account, isAppwriteEnabled } from '../lib/appwrite';
 import { Models } from 'appwrite';
 
-interface User extends Models.User<Models.Preferences> {}
+type User = Models.User<Models.Preferences>;
 
 interface AuthContextType {
   user: User | null;
   loading: boolean;
+  enabled: boolean;
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string, name: string) => Promise<void>;
   logout: () => Promise<void>;
@@ -28,9 +28,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const checkUser = async () => {
     try {
+      if (!isAppwriteEnabled) {
+        // In demo mode (no Appwrite config), ensure app stays functional
+        setUser(null);
+        return;
+      }
       const currentUser = await account.get();
       setUser(currentUser);
-    } catch (error) {
+    } catch {
       setUser(null);
     } finally {
       setLoading(false);
@@ -39,10 +44,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = async (email: string, password: string) => {
     try {
+      if (!isAppwriteEnabled) {
+        throw new Error('Authentication is disabled: Appwrite is not configured. Please set NEXT_PUBLIC_APPWRITE_PROJECT_ID and NEXT_PUBLIC_APPWRITE_ENDPOINT.');
+      }
       // Clear any existing sessions first
       try {
         await account.deleteSession('current');
-      } catch (e) {
+      } catch {
         // Ignore if no session exists
       }
       
@@ -63,10 +71,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const register = async (email: string, password: string, name: string) => {
     try {
+      if (!isAppwriteEnabled) {
+        throw new Error('Registration is disabled: Appwrite is not configured.');
+      }
       // Clear any existing sessions first
       try {
         await account.deleteSession('current');
-      } catch (e) {
+      } catch {
         // Ignore if no session exists
       }
       
@@ -83,6 +94,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = async () => {
     try {
+      if (!isAppwriteEnabled) {
+        // Nothing to do in demo mode
+        setUser(null);
+        return;
+      }
       await account.deleteSession('current');
       setUser(null);
     } catch (error) {
@@ -92,6 +108,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const forgotPassword = async (email: string) => {
     try {
+      if (!isAppwriteEnabled) {
+        throw new Error('Password recovery is disabled: Appwrite is not configured.');
+      }
       await account.createRecovery(email, `${window.location.origin}/reset-password`);
     } catch (error) {
       throw error;
@@ -101,6 +120,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const value: AuthContextType = {
     user,
     loading,
+    enabled: isAppwriteEnabled,
     login,
     register,
     logout,
