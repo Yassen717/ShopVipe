@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import AuthModal from "./auth/AuthModal";
@@ -13,7 +12,6 @@ export default function Header() {
   const { user, logout } = useAuth();
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
-  const router = useRouter();
 
   return (
     <header className="w-full bg-white shadow-sm sticky top-0 z-50">
