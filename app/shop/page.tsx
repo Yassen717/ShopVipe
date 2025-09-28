@@ -16,7 +16,7 @@ export default function Shop() {
 
   const handleSort = (value: string) => {
     setSortBy(value);
-    let sorted = [...filteredProducts];
+    const sorted = [...filteredProducts];
     
     switch (value) {
       case 'price-low':
