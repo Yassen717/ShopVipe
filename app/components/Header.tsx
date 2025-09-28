@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import AuthModal from "./auth/AuthModal";
@@ -10,13 +9,17 @@ import SearchAutocomplete from "./SearchAutocomplete";
 
 export default function Header() {
   const { state } = useCart();
-  const { user, logout } = useAuth();
+  const { user, logout, enabled } = useAuth();
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
-  const router = useRouter();
 
   return (
     <header className="w-full bg-white shadow-sm sticky top-0 z-50">
+      {!enabled && (
+        <div className="w-full bg-yellow-50 border-b border-yellow-200 text-yellow-800 text-sm text-center py-2">
+          Demo mode: authentication is disabled. Configure Appwrite env vars to enable auth.
+        </div>
+      )}
       <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-6">
         <Link href="/" className="flex items-center text-2xl font-bold">
           <span className="text-purple-600">Shop</span><span className="text-pink-500">Vibe</span>

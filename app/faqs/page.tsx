@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from 'react';
-import SectionHeader from '../components/SectionHeader';
 
 interface FAQ {
   id: number;

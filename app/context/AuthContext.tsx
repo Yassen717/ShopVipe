@@ -2,10 +2,9 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { account, isAppwriteEnabled } from '../lib/appwrite';
-import { ID } from 'appwrite';
 import { Models } from 'appwrite';
 
-interface User extends Models.User<Models.Preferences> {}
+type User = Models.User<Models.Preferences>;
 
 interface AuthContextType {
   user: User | null;
@@ -36,7 +35,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
       const currentUser = await account.get();
       setUser(currentUser);
-    } catch (error) {
+    } catch {
       setUser(null);
     } finally {
       setLoading(false);
@@ -51,7 +50,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // Clear any existing sessions first
       try {
         await account.deleteSession('current');
-      } catch (e) {
+      } catch {
         // Ignore if no session exists
       }
       
@@ -78,7 +77,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // Clear any existing sessions first
       try {
         await account.deleteSession('current');
-      } catch (e) {
+      } catch {
         // Ignore if no session exists
       }
       

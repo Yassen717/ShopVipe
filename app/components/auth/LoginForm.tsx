@@ -26,8 +26,9 @@ export default function LoginForm({ onSwitchToRegister, onForgotPassword, onSucc
     try {
       await login(email, password);
       onSuccess?.();
-    } catch (err: any) {
-      setError(err.message || 'Login failed. Please try again.');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Login failed. Please try again.';
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -54,7 +55,7 @@ export default function LoginForm({ onSwitchToRegister, onForgotPassword, onSucc
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900 text-black"
             placeholder="Enter your email address"
           />
         </div>
@@ -69,7 +70,7 @@ export default function LoginForm({ onSwitchToRegister, onForgotPassword, onSucc
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900 text-black"
             placeholder="Enter your password"
           />
         </div>
@@ -95,7 +96,7 @@ export default function LoginForm({ onSwitchToRegister, onForgotPassword, onSucc
 
       <div className="mt-6 text-center">
         <p className="text-sm text-gray-600">
-          Don't have an account?{' '}
+          Don&apos;t have an account?{' '}
           <button
             onClick={onSwitchToRegister}
             className="text-purple-600 hover:text-purple-500 font-medium"

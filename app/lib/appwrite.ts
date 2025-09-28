@@ -12,28 +12,31 @@ const client = isAppwriteEnabled
   ? new Client().setEndpoint(endpoint).setProject(projectId)
   : null;
 
-// Safe shim that rejects with a clear message when Appwrite is disabled
-function disabled(method: string) {
-  return () => Promise.reject(new Error(`Appwrite is not configured. '${method}' cannot be used in demo mode.`));
-}
-
 // Export SDK wrappers. When disabled, provide safe shims so imports don't crash.
-export const account: any = isAppwriteEnabled
+type AccountAPI = Pick<
+  Account,
+  'get' | 'deleteSession' | 'createEmailPasswordSession' | 'create' | 'createRecovery'
+>;
+
+const disabledMethod = <T extends keyof AccountAPI>(name: T) =>
+  (() => Promise.reject(new Error(`Appwrite is not configured. '${String(name)}' cannot be used in demo mode.`))) as AccountAPI[T];
+
+export const account: AccountAPI = isAppwriteEnabled
   ? new Account(client as Client)
   : {
-      get: disabled('account.get'),
-      deleteSession: disabled('account.deleteSession'),
-      createEmailPasswordSession: disabled('account.createEmailPasswordSession'),
-      create: disabled('account.create'),
-      createRecovery: disabled('account.createRecovery'),
+      get: disabledMethod('get'),
+      deleteSession: disabledMethod('deleteSession'),
+      createEmailPasswordSession: disabledMethod('createEmailPasswordSession'),
+      create: disabledMethod('create'),
+      createRecovery: disabledMethod('createRecovery'),
     };
 
-export const databases: any = isAppwriteEnabled
+export const databases: Databases | null = isAppwriteEnabled
   ? new Databases(client as Client)
-  : {};
+  : null;
 
-export const storage: any = isAppwriteEnabled
+export const storage: Storage | null = isAppwriteEnabled
   ? new Storage(client as Client)
-  : {};
+  : null;
 
 export default client;

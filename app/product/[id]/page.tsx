@@ -15,6 +15,7 @@ export default function ProductDetail() {
   const [selectedSize, setSelectedSize] = useState('');
   const [quantity, setQuantity] = useState(1);
 
+  const [showNotification, setShowNotification] = useState(false);
   const product = products.find(p => p.id === params.id);
 
   if (!product) {
@@ -30,9 +31,6 @@ export default function ProductDetail() {
       </div>
     );
   }
-
-  const [showNotification, setShowNotification] = useState(false);
-
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
       addItem(product);
