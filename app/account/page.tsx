@@ -60,7 +60,7 @@ export default function AccountPage() {
                     Change Password
                   </Button>
                   <Link href="/orders">
-                    <Button variant="outline" className="w-full">
+                    <Button variant="outline" className="w-full mb-4">
                       Order History
                     </Button>
                   </Link>

@@ -45,8 +45,9 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
       setTimeout(() => {
         onSuccess?.();
       }, 2000);
-    } catch (err: any) {
-      setError(err.message || 'Registration failed. Please try again.');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Registration failed. Please try again.';
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -79,13 +80,13 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900 text-black"
             placeholder="Enter your full name"
           />
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1 ">
             Email Address
           </label>
           <input
@@ -94,7 +95,7 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900 text-black"
             placeholder="Enter your email address"
           />
         </div>
@@ -109,7 +110,7 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900 text-black"
             placeholder="Create a password"
           />
           <p className="text-xs text-gray-500 mt-1">Must be at least 8 characters long</p>
@@ -125,7 +126,7 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-900 text-black"
             placeholder="Confirm your password"
           />
         </div>
