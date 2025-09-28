@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import DemoBanner from "./components/DemoBanner";
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
 import { WishlistProvider } from "./context/WishlistContext";
@@ -74,6 +75,7 @@ export default function RootLayout({
             <WishlistProvider>
               <CartProvider>
                 <SearchProvider>
+                  <DemoBanner />
                   <Header />
                   <main className="bg-[#f8f9ff]">
                     {children}
