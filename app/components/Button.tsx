@@ -21,7 +21,7 @@ export default function Button({
   disabled = false,
   type = 'button'
 }: ButtonProps) {
-  const baseClasses = 'font-semibold rounded-lg transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none';
+  const baseClasses = 'font-semibold rounded-lg transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none font-body';
   
   const variantClasses = {
     primary: 'bg-gradient-to-r from-pink-400 to-blue-500 hover:from-pink-500 hover:to-blue-600 text-white shadow-md',
@@ -31,8 +31,8 @@ export default function Button({
   
   const sizeClasses = {
     sm: 'px-4 py-2 text-sm',
-    md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-lg'
+    md: 'px-6 py-3 text-base font-medium',
+    lg: 'px-8 py-4 text-lg font-semibold'
   };
   
   return (

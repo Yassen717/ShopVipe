@@ -1,16 +1,22 @@
 @import "tailwindcss";
 
-
+/* CSS Variables for consistent theming */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Font family variables */
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,10 +26,78 @@
   }
 }
 
+/* Base typography styles */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+}
+
+/* Typography hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif), 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Enhanced heading styles */
+h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.875rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Body text improvements */
+p {
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  color: var(--foreground);
+}
+
+/* UI element typography */
+button, .btn {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Navigation and links */
+nav a, .nav-link {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+/* Price and important numbers */
+.price, .currency {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* Code and technical content */
+code, pre, .code {
+  font-family: var(--font-mono);
+  font-weight: 500;
 }
 /* Custom utilities for consistent styling */
 .line-clamp-2 {

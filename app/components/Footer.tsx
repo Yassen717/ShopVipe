@@ -7,47 +7,47 @@ export default function Footer() {
     <footer className="bg-gray-900 text-gray-200 pt-12 pb-6 ">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
-          <h3 className="font-bold mb-2">About ShopVibe</h3>
-          <p className="text-sm mb-2">ShopVibe is a premium e-commerce platform offering high-quality products across various categories. We are committed to providing exceptional shopping experiences.</p>
-          <p className="text-xs">Our mission is to connect people with products they love at prices they can afford.</p>
+          <h3 className="font-bold mb-2 font-display text-lg">About ShopVibe</h3>
+          <p className="text-sm mb-2 font-body leading-relaxed">ShopVibe is a premium e-commerce platform offering high-quality products across various categories. We are committed to providing exceptional shopping experiences.</p>
+          <p className="text-xs font-body opacity-80">Our mission is to connect people with products they love at prices they can afford.</p>
         </div>
         <div>
-          <h3 className="font-bold mb-2">Quick Links</h3>
-          <ul className="space-y-1 text-sm">
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/shop">Shop</Link></li>
-            <li><Link href="/about">About Us</Link></li>
-            <li><Link href="/search">Search</Link></li>
-            <li><Link href="/wishlist">Wishlist</Link></li>
-            <li><Link href="/account">My Account</Link></li>
+          <h3 className="font-bold mb-2 font-display text-lg">Quick Links</h3>
+          <ul className="space-y-1 text-sm font-body">
+            <li><Link href="/" className="hover:text-purple-400 transition-colors">Home</Link></li>
+            <li><Link href="/shop" className="hover:text-purple-400 transition-colors">Shop</Link></li>
+            <li><Link href="/about" className="hover:text-purple-400 transition-colors">About Us</Link></li>
+            <li><Link href="/search" className="hover:text-purple-400 transition-colors">Search</Link></li>
+            <li><Link href="/wishlist" className="hover:text-purple-400 transition-colors">Wishlist</Link></li>
+            <li><Link href="/account" className="hover:text-purple-400 transition-colors">My Account</Link></li>
           </ul>
         </div>
         <div>
-          <h3 className="font-bold mb-2">Customer Service</h3>
-          <ul className="space-y-1 text-sm">
-            <li><Link href="/contact">Contact Us</Link></li>
-            <li><Link href="/faqs">FAQs</Link></li>
-            <li><Link href="/orders">Orders</Link></li>
-            <li><Link href="/cart">Cart</Link></li>
-            <li><Link href="/checkout">Checkout</Link></li>
+          <h3 className="font-bold mb-2 font-display text-lg">Customer Service</h3>
+          <ul className="space-y-1 text-sm font-body">
+            <li><Link href="/contact" className="hover:text-purple-400 transition-colors">Contact Us</Link></li>
+            <li><Link href="/faqs" className="hover:text-purple-400 transition-colors">FAQs</Link></li>
+            <li><Link href="/orders" className="hover:text-purple-400 transition-colors">Orders</Link></li>
+            <li><Link href="/cart" className="hover:text-purple-400 transition-colors">Cart</Link></li>
+            <li><Link href="/checkout" className="hover:text-purple-400 transition-colors">Checkout</Link></li>
           </ul>
         </div>
         <div>
-          <h3 className="font-bold mb-2">Contact Info</h3>
-          <ul className="text-sm space-y-1">
+          <h3 className="font-bold mb-2 font-display text-lg">Contact Info</h3>
+          <ul className="text-sm space-y-1 font-body">
             <li>123 Shopping Street, NY 10001</li>
-            <li>+1 (555) 123-4567</li>
-            <li>info@shopvibe.com</li>
+            <li className="font-mono">+1 (555) 123-4567</li>
+            <li className="font-mono">info@shopvibe.com</li>
             <li className="flex space-x-3 mt-2">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i className="fab fa-twitter"></i></a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-purple-400 transition-colors"><i className="fab fa-facebook-f"></i></a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="hover:text-purple-400 transition-colors"><i className="fab fa-twitter"></i></a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-purple-400 transition-colors"><i className="fab fa-instagram"></i></a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-purple-400 transition-colors"><i className="fab fa-linkedin-in"></i></a>
             </li>
           </ul>
         </div>
       </div>
-      <div className="text-center text-xs text-gray-400 mt-8">© 2025 ShopVibe. All Rights Reserved.</div>
+      <div className="text-center text-xs text-gray-400 mt-8 font-body">© 2025 ShopVibe. All Rights Reserved.</div>
     </footer>
   );
 }

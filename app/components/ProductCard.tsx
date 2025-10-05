@@ -61,10 +61,10 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
 
             <div className="flex-1">
                 <Link href={`/product/${product.id}`}>
-                    <h3 className="font-semibold text-lg text-gray-800 mb-1 line-clamp-2 hover:text-purple-600 cursor-pointer">{product.name}</h3>
+                    <h3 className="font-semibold text-lg text-gray-800 mb-1 line-clamp-2 hover:text-purple-600 cursor-pointer font-body">{product.name}</h3>
                 </Link>
-                <p className="text-sm text-gray-500 mb-2">{product.brand}</p>
-                <div className="text-pink-500 font-bold text-xl mb-2">${product.price.toFixed(2)}</div>
+                <p className="text-sm text-gray-500 mb-2 font-body">{product.brand}</p>
+                <div className="text-pink-500 font-bold text-xl mb-2 price font-sans">${product.price.toFixed(2)}</div>
 
                 <div className="flex items-center gap-1 text-yellow-400 text-sm mb-3">
                     {Array.from({ length: 5 }).map((_, idx) => (
@@ -94,7 +94,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
 
             <button
                 onClick={handleAddToCart}
-                className="w-full bg-gradient-to-r from-pink-400 to-blue-500 hover:from-pink-500 hover:to-blue-600 text-white font-semibold py-3 rounded-lg transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]"
+                className="w-full bg-gradient-to-r from-pink-400 to-blue-500 hover:from-pink-500 hover:to-blue-600 text-white font-semibold py-3 rounded-lg transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] font-body"
             >
                 Add to Cart
             </button>
