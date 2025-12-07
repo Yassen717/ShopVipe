@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
 import { Product } from '../data/products';
+import { useToast } from './ToastContext';
 
 interface CartItem extends Product {
   quantity: number;
@@ -85,6 +86,8 @@ const CartContext = createContext<{
 } | null>(null);
 
 export function CartProvider({ children }: { children: ReactNode }) {
+  const { success, info } = useToast();
+
   // Initialize state with a function to load from localStorage
   const [state, dispatch] = useReducer(cartReducer, initialState, (initial) => {
     // Only run on client-side
@@ -119,10 +122,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const addItem = (product: Product) => {
     dispatch({ type: 'ADD_ITEM', payload: product });
+    success(`Added ${product.name} to cart`);
   };
 
   const removeItem = (id: string) => {
     dispatch({ type: 'REMOVE_ITEM', payload: id });
+    info('Removed item from cart');
   };
 
   const updateQuantity = (id: string, quantity: number) => {
@@ -131,6 +136,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const clearCart = () => {
     dispatch({ type: 'CLEAR_CART' });
+    info('Cart cleared');
   };
 
   return (

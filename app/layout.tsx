@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import DemoBanner from "./components/DemoBanner";
 import ErrorBoundary from "./components/ErrorBoundary";
+import { ToastProvider } from "./context/ToastContext";
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
 import { WishlistProvider } from "./context/WishlistContext";
@@ -86,22 +87,24 @@ export default function RootLayout({
         className={`${inter.variable} ${playfairDisplay.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
         <ErrorBoundary>
-          <AuthProvider>
-            <OrderProvider>
-              <WishlistProvider>
-                <CartProvider>
-                  <SearchProvider>
-                    <DemoBanner />
-                    <Header />
-                    <main className="bg-[#f8f9ff]">
-                      {children}
-                    </main>
-                    <Footer />
-                  </SearchProvider>
-                </CartProvider>
-              </WishlistProvider>
-            </OrderProvider>
-          </AuthProvider>
+          <ToastProvider>
+            <AuthProvider>
+              <OrderProvider>
+                <WishlistProvider>
+                  <CartProvider>
+                    <SearchProvider>
+                      <DemoBanner />
+                      <Header />
+                      <main className="bg-[#f8f9ff]">
+                        {children}
+                      </main>
+                      <Footer />
+                    </SearchProvider>
+                  </CartProvider>
+                </WishlistProvider>
+              </OrderProvider>
+            </AuthProvider>
+          </ToastProvider>
         </ErrorBoundary>
       </body>
     </html>
