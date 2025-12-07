@@ -3,8 +3,14 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { account, isAppwriteEnabled } from '../lib/appwrite';
 import { Models } from 'appwrite';
+import { useToast } from './ToastContext';
 
 type User = Models.User<Models.Preferences>;
+
+interface AuthError {
+  code?: number;
+  message?: string;
+}
 
 interface AuthContextType {
   user: User | null;
@@ -21,6 +27,7 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const { success, error: toastError, info } = useToast();
 
   useEffect(() => {
     checkUser();
@@ -42,6 +49,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const handleError = (error: unknown, defaultMessage: string) => {
+    console.error(error);
+    const err = error as AuthError;
+    if (err?.code === 401) {
+      toastError('Invalid credentials. Please check your email and password.');
+    } else if (err?.code === 409) {
+      toastError('A user with the same email already exists.');
+    } else if (err?.code === 429) {
+      toastError('Too many requests. Please try again later.');
+    } else if (err?.message) {
+      toastError(err.message);
+    } else {
+      toastError(defaultMessage);
+    }
+  };
+
   const login = async (email: string, password: string) => {
     try {
       if (!isAppwriteEnabled) {
@@ -53,11 +76,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       } catch {
         // Ignore if no session exists
       }
-      
+
       await account.createEmailPasswordSession(email, password);
       await checkUser();
-    } catch (error) {
-      console.error('Login error:', error);
+      success('Successfully logged in!');
+    } catch (error: unknown) {
+      handleError(error, 'Login failed. Please try again.');
       throw error;
     }
   };
@@ -80,14 +104,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       } catch {
         // Ignore if no session exists
       }
-      
+
       const userId = generateValidUserId();
       console.log('Creating user with ID:', userId);
       await account.create(userId, email, password, name);
-      
+      success('Registration successful! Please log in.');
+
       // Don't auto-login after registration - let user login manually
-    } catch (error) {
-      console.error('Registration error:', error);
+    } catch (error: unknown) {
+      handleError(error, 'Registration failed. Please try again.');
       throw error;
     }
   };
@@ -101,7 +126,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
       await account.deleteSession('current');
       setUser(null);
-    } catch (error) {
+      info('Successfully logged out');
+    } catch (error: unknown) {
+      handleError(error, 'Logout failed');
       throw error;
     }
   };
@@ -112,7 +139,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         throw new Error('Password recovery is disabled: Appwrite is not configured.');
       }
       await account.createRecovery(email, `${window.location.origin}/reset-password`);
-    } catch (error) {
+      success('Password recovery email sent!');
+    } catch (error: unknown) {
+      handleError(error, 'Failed to send recovery email');
       throw error;
     }
   };
@@ -140,4 +169,4 @@ export function useAuth() {
     throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
-} 
+}
